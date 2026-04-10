@@ -1,0 +1,18 @@
+$base-spacing-unit: 4px;
+
+$multiplier-map: (
+    'xs': 0.5,
+    'sm': 1,
+    'md': 2,
+    'lg': 3,
+    'xl': 4,
+);
+
+@function spacing($size) {
+    @if not map-has-key($multiplier-map, $size) {
+        @error "Size '#{$size}' not found in sizing map.";
+    }
+    
+    $multiplier: map-get($multiplier-map, $size);
+    @return $base-spacing-unit * $multiplier;
+}

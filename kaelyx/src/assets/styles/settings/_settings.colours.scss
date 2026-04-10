@@ -1,0 +1,50 @@
+// ─── Raw palette ────────────────────────────────────────────
+$charcoal:      #333;
+$white:         #d0d0d0;
+$soft-periwinkle: #9D8DF1;
+$periwinkle:    #B8CDF8;
+$azure-mist:    #D6E5E3;
+$granite:       #466060;
+$aquamarine:    #95F2D9;
+$vibrant-coral: #F97068;
+
+// ─── Theme maps ───────────────────
+$theme-light: (
+  'error':      $vibrant-coral,
+  'success':    $aquamarine,
+  'primary':    $soft-periwinkle,
+  'secondary':  $periwinkle,
+  'negative':   $granite,
+  'background': $white,
+  'text':       $charcoal,
+);
+
+$theme-dark: (
+  'error':      $vibrant-coral,
+  'success':    $aquamarine,
+  'primary':    $soft-periwinkle,
+  'secondary':  $periwinkle,
+  'negative':   $granite,
+  'background': $charcoal,
+  'text':       $white,
+);
+
+// ─── Mixin: emit a map as CSS custom properties ─────────────
+@mixin emit-theme($map) {
+  @each $name, $value in $map {
+    --colour-#{$name}: #{$value};
+  }
+}
+
+// ─── Emit themes ────────────────────────────────────────────
+:root             { @include emit-theme($theme-light); }
+[data-theme="dark"] { @include emit-theme($theme-dark); }
+
+// ─── colour() — returns a var() for runtime switching ───────
+@function colour($name) {
+  // Compile-time guard: catch typos against the light map
+  @if not map-has-key($theme-light, $name) {
+    @error "Colour '#{$name}' not found in theme map.";
+  }
+  @return var(--colour-#{$name});
+}

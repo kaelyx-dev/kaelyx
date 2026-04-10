@@ -1,0 +1,14 @@
+@use 'utils/utils' as *;
+@use 'settings/settings' as *;
+@use 'components/components' as *;
+
+* {
+  transition: background-color 0.1s ease, color 0.1s ease, border-color 0.1s ease;
+}
+
+#app {
+    min-height: 100vh;
+    min-width: 100vw;
+    color: colour('text');
+    background-color: colour('background');
+}
