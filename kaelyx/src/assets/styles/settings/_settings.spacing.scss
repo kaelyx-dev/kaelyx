@@ -1,4 +1,4 @@
-$base-spacing-unit: 4px;
+$base-spacing-unit: 0.25rem;
 
 $multiplier-map: (
     'xs': 0.5,
@@ -12,7 +12,6 @@ $multiplier-map: (
     @if not map-has-key($multiplier-map, $size) {
         @error "Size '#{$size}' not found in sizing map.";
     }
-    
     $multiplier: map-get($multiplier-map, $size);
     @return $base-spacing-unit * $multiplier;
 }

@@ -1,31 +1,25 @@
-import { ref , watch } from 'vue'
+import { ref } from 'vue'
 
 export type Theme = 'light' | 'dark'
 
-const currentTheme = ref('dark')
-
+const currentTheme: ReturnType<typeof ref<Theme>> = ref('dark')
 
 export const useTheme = () => {
     const setTheme = (theme: Theme) => {
-        currentTheme.value = theme
+        currentTheme.value = theme;
+        document.documentElement.dataset.theme = theme;
+        localStorage.setItem('theme', theme);
     }
-    
-    watch(currentTheme, (newTheme) => {
-        document.documentElement.dataset.theme = newTheme
-        localStorage.setItem('theme', newTheme)
-    })
-    
+
     const initTheme = () => {
-        const presavedTheme = localStorage.getItem('theme') as Theme | null
-        
-        if(presavedTheme) {
-            setTheme(presavedTheme)
-            return
+        const saved = localStorage.getItem('theme') as Theme | null;
+        if (saved) {
+            setTheme(saved);
+            return;
         }
-        
-        const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches
-        setTheme(prefersDark ? 'dark' : 'light')
+        const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
     }
-    
-    return {setTheme, initTheme, currentTheme}
+
+    return { setTheme, initTheme, currentTheme }
 }

@@ -1,50 +1,154 @@
 // ─── Raw palette ────────────────────────────────────────────
-$charcoal:      #333;
-$white:         #d0d0d0;
-$soft-periwinkle: #9D8DF1;
-$periwinkle:    #B8CDF8;
-$azure-mist:    #D6E5E3;
-$granite:       #466060;
-$aquamarine:    #95F2D9;
-$vibrant-coral: #F97068;
+$red: #F42C04;
+$purple: #9b5de5;
+$pink: #f15bb5;
+$orange: #F26419;
+$yellow: #fee440;
+$blue: #00bbf9;
+$green: #00f5d4;
+$black: #333;
+$white: #eee;
+
+$theme-global: (
+  'pink': $pink,
+  'red': $red,
+  'orange': $orange,
+  'yellow': $yellow,
+  'green': $green,
+  'blue': $blue,
+  'purple': $purple,
+
+  'black': $black,
+  'white': $white,
+
+  'error': $red,
+  'warning': $orange,
+  'success': $green,
+
+);
 
 // ─── Theme maps ───────────────────
 $theme-light: (
-  'error':      $vibrant-coral,
-  'success':    $aquamarine,
-  'primary':    $soft-periwinkle,
-  'secondary':  $periwinkle,
-  'negative':   $granite,
   'background': $white,
-  'text':       $charcoal,
+  'text': $black,
 );
 
 $theme-dark: (
-  'error':      $vibrant-coral,
-  'success':    $aquamarine,
-  'primary':    $soft-periwinkle,
-  'secondary':  $periwinkle,
-  'negative':   $granite,
-  'background': $charcoal,
-  'text':       $white,
+  'background': $black,
+  'text': $white,
 );
+
+// $theme-light and $theme-dark should always have the same keys
+$colour-map: map-merge($theme-global, $theme-light);
 
 // ─── Mixin: emit a map as CSS custom properties ─────────────
 @mixin emit-theme($map) {
-  @each $name, $value in $map {
+  @each $name, $value in map-merge($theme-global, $map) {
     --colour-#{$name}: #{$value};
+    --text-#{$name}-contrast: #{get-colour-text-contrast($value)};
   }
 }
 
 // ─── Emit themes ────────────────────────────────────────────
-:root             { @include emit-theme($theme-light); }
-[data-theme="dark"] { @include emit-theme($theme-dark); }
+
+// :root {
+//     color-scheme: light only;
+// }
+
+[data-theme="light"] {
+  @include emit-theme($theme-light);
+}
+
+[data-theme="dark"] {
+  @include emit-theme($theme-dark);
+}
 
 // ─── colour() — returns a var() for runtime switching ───────
 @function colour($name) {
+
   // Compile-time guard: catch typos against the light map
-  @if not map-has-key($theme-light, $name) {
+  @if not (map-has-key($theme-light, $name) or map-has-key($theme-global, $name)) {
     @error "Colour '#{$name}' not found in theme map.";
   }
+
   @return var(--colour-#{$name});
+}
+
+
+@function get-colour-text-contrast($colour) {
+  // Simple luminance check for light/dark contrast
+  $r: red($colour);
+  $g: green($colour);
+  $b: blue($colour);
+  $luminance: (
+    0.299 * $r + 0.587 * $g + 0.114 * $b) / 255;
+  @return if($luminance > 0.5, colour('text'), colour('background')
+);
+}
+
+@mixin add-bg-colour-classes() {
+  @each $name, $colour in $colour-map {
+    &--bg-colour-#{$name} {
+      background-color: $colour;
+    }
+  }
+}
+
+@mixin add-text-colour-classes() {
+  @each $name, $colour in $colour-map {
+    &--text-colour-#{$name} {
+      color: $colour;
+    }
+  }
+}
+
+@mixin add-dark-bg-colour-classes() {
+  @each $name, $colour in $colour-map {
+    &--dark-bg-colour-#{$name} {
+      [data-theme="dark"] & {
+        background-color: $colour;
+      }
+    }
+  }
+}
+
+@mixin add-light-bg-colour-classes() {
+  @each $name, $colour in $colour-map {
+    &--light-bg-colour-#{$name} {
+      [data-theme="light"] & {
+        background-color: $colour;
+      }
+    }
+  }
+}
+
+@mixin add-dark-text-colour-classes() {
+  @each $name, $colour in $colour-map {
+    &--dark-text-colour-#{$name} {
+      [data-theme="dark"] & {
+        color: $colour;
+      }
+    }
+  }
+}
+
+@mixin add-light-text-colour-classes() {
+  @each $name, $colour in $colour-map {
+    &--light-text-colour-#{$name} {
+      [data-theme="light"] & {
+        color: $colour;
+      }
+    }
+  }
+}
+
+
+
+@mixin add-all-classes() {
+  @include add-bg-colour-classes();
+  @include add-text-colour-classes();
+  @include add-dark-bg-colour-classes();
+  @include add-light-bg-colour-classes();
+  @include add-dark-text-colour-classes();
+  @include add-light-text-colour-classes();
 }

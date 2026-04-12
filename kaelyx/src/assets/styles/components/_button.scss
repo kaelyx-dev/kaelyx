@@ -1,0 +1,44 @@
+@use '../settings/settings' as *;
+
+
+@mixin add-button-variant ($variant-name, $bg-colour, $text-colour: colour('black')) {
+    &--#{$variant-name} {
+        background-color: colour($bg-colour);
+        color: colour($text-colour);
+    }
+}
+
+
+.btn {
+    text-decoration: none;
+    
+    padding: spacing('lg');
+    
+    background-color: colour('background');
+    color: colour('text');
+    
+    border-radius: $border-radius;
+    border: 2px solid black;
+    box-shadow: 4px 4px 0 black;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0 black;    
+    }
+    
+    &:active {
+        transform: translate(4px, 4px);
+        box-shadow: 0px 0px 0 black;
+    }
+    
+    &--theme-toggle {
+        float: left;
+        @include font('p2');
+    }
+    
+    @include add-all-classes();
+}

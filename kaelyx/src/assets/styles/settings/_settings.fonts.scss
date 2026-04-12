@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use 'sass:list';
+
+
+@font-face {
+    font-family: 'roboto';
+    src: url('@/assets/fonts/roboto.woff2') format('woff2');
+    font-display: swap;
+}
+
+$font-map: (
+    title:  (6em, 125%, 5px),
+    h1:     (4em, 125%, 0px),
+    h2:     (2em, 125%, 0px),
+    h3:     (1.5em, 125%, 0px),
+    p1:     (1.5em, 125%, 0px),
+    p2:     (1.25em, 125%, 0px),
+    p3:     (1em, 125%, 0px),
+);
+
+$k-fontfamily-list: (
+    'roboto'
+);
+
+@mixin font($name, $family: 'roboto') {
+    @if not map.has-key($font-map, $name) {
+        @error "Font '#{$name}' not found in \$k-font-map.";
+    }
+
+    $font: map.get($font-map, $name);
+    $size: list.nth($font, 1);
+    $lineHeight: list.nth($font, 2);
+    $letterSpacing: (list.nth($font, 3));
+    
+    font-family: $family, sans-serif;
+    font-size: $size;
+    line-height: $lineHeight;
+    letter-spacing: $letterSpacing;
+}
+
+@mixin add-font-classes() {
+    @each $name, $font in $font-map {
+        &--font-#{$name} {
+            @include font($name);
+        }
+    }
+}
