@@ -20,6 +20,13 @@ export const useTheme = () => {
         const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
         setTheme(prefersDark ? 'dark' : 'light');
     }
+    
+    const isLight = () => currentTheme.value === 'light'
+    const isDark = () => currentTheme.value === 'dark'
+    
+    const toggleTheme = () => {
+        setTheme(isLight() ? 'dark' : 'light')
+    }
 
-    return { setTheme, initTheme, currentTheme }
+    return { setTheme, initTheme, currentTheme, isLight, isDark, toggleTheme }
 }

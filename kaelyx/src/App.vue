@@ -1,18 +1,24 @@
 <script setup lang="ts">
 import { RouterView, useRouter } from 'vue-router'
 import { useTheme } from '@composable/useTheme';
+import { useIcons } from '@composable/useIcons';
 import Button from '@component/base/buttons/Button.vue';
+import TwoColumn from './components/layout/TwoColumn.vue';
+import SvgIcon from '@component/base/icons/Icon.vue';
 
-const { initTheme, setTheme, currentTheme } = useTheme();
+const { initTheme, isLight, toggleTheme } = useTheme();
 const { getRoutes, push: navigateTo } = useRouter();
+
+const {createIconMapElement } = useIcons();
 
 initTheme();
 
 </script>
 
 <template>
-  <header>
-    <nav class="nav">
+    <component :is="createIconMapElement()" />
+    <header>
+      <nav class="nav">
         <div class="nav__title">
           <span>Kaelyx</span>
         </div>
@@ -29,17 +35,25 @@ initTheme();
           dark-mode-background-colour="purple"
           dark-mode-text-colour="white"
           />
-          <Button @click="() => setTheme(currentTheme === 'light' ? 'dark' : 'light')" background-colour="orange" text-colour="white">
-            <span v-if="currentTheme === 'light'" class="material-symbols-outlined">wb_sunny</span>
-            <span v-else class="material-symbols-outlined">bedtime</span>
+          <Button @click="() => toggleTheme()" background-colour="orange" text-colour="white">
+            <SvgIcon v-if="isLight()" name="sun"/>
+            <SvgIcon v-else name="moon"/>
           </Button>
         </div>
       </nav>
-  </header>
-  <main>
-    <RouterView />
-  </main>
-  <footer>
-    
-  </footer>
+    </header>
+    <main>
+      <SvgIcon name="github"/>
+      <RouterView />
+    </main>
+    <footer>
+      <TwoColumn>
+        <template #left>
+          <span>© 2024 Kaelyx. All rights reserved.</span>
+        </template>
+        <template #right>
+          <span>Made with ❤️ by the Kaelyx Team.</span>
+        </template>
+      </TwoColumn>
+    </footer>
 </template>

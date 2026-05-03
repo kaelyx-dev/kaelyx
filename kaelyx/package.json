@@ -8,7 +8,13 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build"
+    "type-check": "vue-tsc --build",
+    
+    "k:build:icons": "ts-node scripts/BuildIconManifest.ts",
+    "k:build:blog": "ts-node scripts/BuildBlogManifest.ts",
+    "k:build:projects": "ts-node scripts/BuildProjectManifest.ts",
+    "k:build:all": "run-p k:build:icons k:build:blog k:build:projects"
+    
   },
   "dependencies": {
     "pinia": "^3.0.4",

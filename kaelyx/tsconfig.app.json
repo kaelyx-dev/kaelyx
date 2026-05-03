@@ -18,7 +18,8 @@
       "@util/*": ["./src/utils/*"],
       "@type/*": ["./src/types/*"],
       "@service/*": ["./src/services/*"],
-      "@style/*": ["./src/assets/styles/*"]
+      "@style/*": ["./src/assets/styles/*"],
+      "@icon/*": ["./src/assets/icons/*", "../public/icons/*"]
     },
 
     // `vue-tsc --build` produces a .tsbuildinfo file for incremental type-checking.

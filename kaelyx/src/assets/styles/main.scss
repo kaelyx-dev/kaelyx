@@ -1,5 +1,6 @@
 @use 'utils/utils' as *;
 @use 'settings/settings' as *;
+@use 'layouts/layouts' as * ;
 @use 'components/components' as *;
 
 * {
@@ -7,9 +8,24 @@
   font-family: 'roboto', sans-serif;
 }
 
-#app {
+
+body {
   min-height: 100vh;
   min-width: 100vw;
-  color: colour('text');
   background-color: colour('background');
+  color: colour('text');
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  background-color: red;
+  min-width: 1024px;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
