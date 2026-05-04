@@ -49,10 +49,10 @@ initTheme();
     <footer>
       <TwoColumn>
         <template #left>
-          <span>© 2024 Kaelyx. All rights reserved.</span>
+          <span>© {{ new Date().getFullYear() }} Kaelyx.</span>
         </template>
         <template #right>
-          <span>Made with ❤️ by the Kaelyx Team.</span>
+          <span>Social Links... eventually</span>
         </template>
       </TwoColumn>
     </footer>

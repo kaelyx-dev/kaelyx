@@ -1,18 +1,11 @@
-# Todo
-* Create Blog Engine
-  * Create Blog Builder Script
-  * Create Add Blog Entry Script
-  * Handle Blog Build Script
-  * Create Create RSS Script
-  * Entry Discovery
-  * Entry Parsing
+todo
 
-## Components
-* Card
-* Link
-* Footer
-* Header <--- currently these are all just in app
-* Nav Bar <-|
+blog engine
 
-## Content
-* ew no, rather not ty.
+main block styling
+
+footer styling
+
+shortcode engine
+
+projects engine
