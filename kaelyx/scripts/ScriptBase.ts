@@ -1,1 +1,0 @@
-export const BaseDirectory = process.env.PWD

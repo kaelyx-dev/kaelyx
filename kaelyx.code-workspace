@@ -1,0 +1,20 @@
+{
+    "folders": [
+        {
+            "path": "kaelyx/src",
+            "name": "Site"
+        },
+        {
+            "path": "kaelyx/public/blog",
+            "name": "Blog"
+        },
+        {
+            "path": "kaelyx/scripts",
+            "name": "Scripts"
+        },
+        {
+            "path": "kaelyx/",
+            "name": "Root"
+        }
+    ]
+}
