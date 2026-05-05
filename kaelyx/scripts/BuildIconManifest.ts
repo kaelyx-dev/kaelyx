@@ -1,5 +1,6 @@
+/// <reference types="node" />
 
-import fs from "node:fs"
+import fs from "fs"
 
 const iconPrefix = "icon-"
 

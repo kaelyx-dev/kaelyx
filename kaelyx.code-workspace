@@ -1,6 +1,10 @@
 {
     "folders": [
         {
+            "path": "./",
+            "name": "Root"
+	    },
+        {
             "path": "kaelyx/src",
             "name": "Site"
         },
@@ -9,12 +13,17 @@
             "name": "Blog"
         },
         {
+	        "path": "kaelyx/public/",
+	        "name": "Public"
+	    },
+        {
             "path": "kaelyx/scripts",
             "name": "Scripts"
         },
-        {
-            "path": "kaelyx/",
-            "name": "Root"
-        }
+	    {
+	        "path": "docs/",
+	        "name": "Docs"
+	    },
+
     ]
 }

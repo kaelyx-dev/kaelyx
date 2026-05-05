@@ -14,7 +14,8 @@
     "k:build:projects": "tsx scripts/BuildProjectManifest.ts",
     "k:build:all": "run-p k:build:icons k:build:blog k:build:projects",
     "k:deploy": "tsx scripts/Publish.ts",
-    "k:deploy:dry-run": "tsx scripts/Publish.ts --dry-run"
+    "k:deploy:dry-run": "tsx scripts/Publish.ts --dry-run",
+    "k:blog:new": "tsx scripts/blog/NewPost.ts"
   },
   "dependencies": {
     "pinia": "^3.0.4",
