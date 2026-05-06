@@ -19,7 +19,7 @@ for (const cmd of buildCommands) {
 }
 
 if (dryRun) {
-    console.log('Dry run complete. Skipping gh-pages publish.');
+    console.log('Dry run complete. Skipping publish step.');
     process.exit(0);
 }
 

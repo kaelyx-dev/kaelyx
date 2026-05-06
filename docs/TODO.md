@@ -15,3 +15,5 @@ tools engine
 remove comments and newlines from icon svgs
 sanitize svg icons for security
 set icons stroke/fill to currentColor for better styling
+
+setup publish script to work with both gh-pages and cloudflare pages. using .env and gitignore with .env.example.
