@@ -1,0 +1,14 @@
+@use '../utils/utils' as *;
+@use '../settings/settings' as *;
+
+main {
+
+    flex: 1;
+
+    border-radius: $border-radius;
+    background-color: colour('background');
+    color: colour('text');
+    border: 2px solid black;
+
+    padding: spacing('xl');
+}

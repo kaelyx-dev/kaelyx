@@ -1,0 +1,108 @@
+@use 'sass:map';
+@use 'sass:math';
+
+$breakpoints: (
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 1024px,
+  widescreen: 1200px,
+  full: 1440px
+);
+
+@mixin from($bp) {
+  $value: if(map.has-key($breakpoints, $bp), map.get($breakpoints, $bp), $bp);
+  @media (width >= #{$value}) { @content; }
+}
+
+@mixin until($bp) {
+  $value: if(map.has-key($breakpoints, $bp), map.get($breakpoints, $bp), $bp);
+  @media (width < #{$value}) { @content; }
+}
+
+@mixin between($from, $until) {
+  $f: if(map.has-key($breakpoints, $from), map.get($breakpoints, $from), $from);
+  $u: if(map.has-key($breakpoints, $until), map.get($breakpoints, $until), $until);
+  @media (#{$f} <= width < #{$u}) { @content; }
+}
+
+@mixin container($size, $name: null) {
+  @if $name {
+    @container #{$name} (width >= #{$size}) { @content; }
+  } @else {
+    @container (width >= #{$size}) { @content; }
+  }
+}
+
+@function get-breakpoint($name) {
+  @return if(map.has-key($breakpoints, $name), map.get($breakpoints, $name), null);
+}
+
+$root-font-size:  16 !default;
+$default-min-vw:  400px !default;
+$default-max-vw:  1440px !default;
+
+@function _to-px($v) {
+  $u: math.unit($v);
+  @if $u == 'px'  { @return math.div($v, 1px); }
+  @if $u == 'rem' { @return math.div($v, 1rem) * $root-font-size; }
+  @if $u == ''    { @return $v; }
+  @error "fluid: expected length (px/rem), got '#{$u}'";
+}
+
+@function _to-pct($v) {
+  @if math.unit($v) == '%' { @return math.div($v, 1%); }
+  @error "fluid-pct: expected %, got '#{math.unit($v)}'";
+}
+
+// Absolute lengths (gap, padding, font-size, etc.)
+@function fluid($min, $max, $min-vw: $default-min-vw, $max-vw: $default-max-vw) {
+  $min-px:    _to-px($min);
+  $max-px:    _to-px($max);
+  $min-vw-px: _to-px($min-vw);
+  $max-vw-px: _to-px($max-vw);
+
+  $slope:        math.div($max-px - $min-px, $max-vw-px - $min-vw-px);
+  $intercept-px: $min-px - $slope * $min-vw-px;
+
+  $min-rem:       math.div($min-px,       $root-font-size);
+  $max-rem:       math.div($max-px,       $root-font-size);
+  $intercept-rem: math.div($intercept-px, $root-font-size);
+  $vw-coef:       $slope * 100;
+
+  @return clamp(
+    #{$min-rem}rem,
+    #{$vw-coef}vw + #{$intercept-rem}rem,
+    #{$max-rem}rem
+  );
+}
+
+// Viewport percentages (width, max-width)
+@function fluid-pct($small-pct, $large-pct, $min-vw: $default-min-vw, $max-vw: $default-max-vw) {
+  $sp: math.div(_to-pct($small-pct), 100);  // 1.00
+  $lp: math.div(_to-pct($large-pct), 100);  // 0.70
+  $sv: _to-px($min-vw);
+  $lv: _to-px($max-vw);
+
+  // Pixel widths at each anchor
+  $w-small: $sp * $sv;
+  $w-large: $lp * $lv;
+
+  $slope:        math.div($w-large - $w-small, $lv - $sv);
+  $intercept-px: $w-small - $slope * $sv;
+
+  $intercept-rem: math.div($intercept-px, $root-font-size);
+  $vw-coef:       $slope * 100;
+
+  $low:  math.min(_to-pct($small-pct), _to-pct($large-pct));
+  $high: math.max(_to-pct($small-pct), _to-pct($large-pct));
+
+  @return clamp(
+    #{$low}vw,
+    #{$vw-coef}vw + #{$intercept-rem}rem,
+    #{$high}vw
+  );
+}
+
+@function responsive-width($min, $max, $args...) { @return fluid-pct($min, $max, $args...); }
+@function responsive-size($min, $max, $args...)  { @return fluid($min, $max, $args...); }
+@function responsive-gap($min, $max, $args...)   { @return fluid($min, $max, $args...); }
