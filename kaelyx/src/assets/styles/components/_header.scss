@@ -1,14 +1,32 @@
 @use '../settings/settings' as *;
-
+@use '../utils/utils' as *;
 header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    
+    justify-content: space-between;
+    flex-wrap: wrap;
     width: 100%;
-    
+
+    padding: spacing('lg');
     background-color: colour('background');
     border: 2px solid black;
     border-top: none;
     border-radius: 0 0 $border-radius $border-radius;
+
+
+
+    @include until('tablet') {
+        flex-direction: column;
+        justify-content: center;
+        gap: spacing('md');
+    }
+}
+
+.title {
+    color: colour('text');
+    @include font('h1');
+
+    @include until('tablet') {
+        display: none;
+    }
 }

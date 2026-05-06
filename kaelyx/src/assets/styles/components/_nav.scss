@@ -1,20 +1,16 @@
 @use '../settings/settings' as *;
+@use '../utils/utils' as *;
+
 .nav {
+
     display: flex;
     flex-direction: row;
-    padding: spacing('lg');
-    gap: spacing('xl');
-    
-    &__title {
-        @include font('h3');
-        display: flex;
-        align-items: center;
-    }
+    @include font('p2');
+
     &__links {
         margin-left: auto;
         display: flex;
         flex-direction: row;
-        gap: spacing('lg');
+        gap: responsive-size(spacing('md'), spacing('lg'), get-breakpoint('mobile'), get-breakpoint('tablet'));
     }   
-    @include font('p2');
 }

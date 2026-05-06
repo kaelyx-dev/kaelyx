@@ -18,10 +18,8 @@ initTheme();
 <template>
   <component :is="createIconMapElement()" />
   <header>
+      <span class="title">Kaelyx</span>
     <nav class="nav">
-        <div class="nav__title">
-          <span>Kaelyx</span>
-        </div>
         <div class="nav__links">
           <Button 
           v-for="(route, index) in getRoutes().filter(r => !r.meta?.hide)" 
@@ -31,7 +29,6 @@ initTheme();
           
           light-mode-background-colour="yellow"
           light-mode-text-colour="black"
-          
           dark-mode-background-colour="purple"
           dark-mode-text-colour="white"
           />
