@@ -3,7 +3,7 @@ $red: #F42C04;
 $purple: #9b5de5;
 $pink: #f15bb5;
 $orange: #F26419;
-$yellow: #fee440;
+$yellow: #ffeb6b;
 $blue: #00bbf9;
 $green: #00f5d4;
 $black: #333;
@@ -29,11 +29,15 @@ $theme-global: (
 
 // ─── Theme maps ───────────────────
 $theme-light: (
+  'body-background': #cccccc,
+  'body-accent': #8b8b8b,
   'background': $white,
   'text': $black,
 );
 
 $theme-dark: (
+  'body-background': #111,
+  'body-accent': $purple,
   'background': $black,
   'text': $white,
 );

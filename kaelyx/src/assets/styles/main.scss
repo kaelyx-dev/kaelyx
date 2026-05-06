@@ -10,16 +10,26 @@
 
 
 body {
+
+  $background-grid-size: 5em;
+
   min-height: 100vh;
   min-width: 100vw;
-  background-color: colour('background');
+
+  background-color: colour('body-background');
   color: colour('text');
+
+  background-size: $background-grid-size $background-grid-size;
+  background-position: $background-grid-size/2 $background-grid-size/2;
+  background-image:
+    linear-gradient(to right, colour('body-accent') 1px, transparent 1px),
+    linear-gradient(to bottom, colour('body-accent') 1px, transparent 1px);
+
   display: flex;
   justify-content: center;
 }
 
 #app {
-  background-color: red;
   min-width: 1024px;
   
   display: flex;
