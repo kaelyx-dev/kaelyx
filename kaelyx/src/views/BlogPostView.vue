@@ -60,8 +60,8 @@ const handleBackClick = () => {
         <Button @click="handleBackClick" background-colour="orange" text-colour="white" 
         :class="{'btn--rotated' : !isAtTop}"
         :style="{
-            position: 'sticky', 
-            bottom: '1rem', left: '1rem', 
+            position: 'fixed', 
+            bottom: '1rem', right: '1rem', 
             zIndex: 1000 }">
             <SvgIcon
                 name="arrow-back"
@@ -80,4 +80,5 @@ const handleBackClick = () => {
             <pre>{{ content }}</pre>
         </div>
     </div>
+    <p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p>
 </template>
