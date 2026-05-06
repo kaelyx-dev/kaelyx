@@ -5,6 +5,7 @@ import { useIcons } from '@composable/useIcons';
 import Button from '@component/base/buttons/Button.vue';
 import TwoColumn from './components/layout/TwoColumn.vue';
 import SvgIcon from '@component/base/icons/SvgIcon.vue';
+import Link from '@component/base/links/Link.vue';
 
 const { initTheme, isLight, toggleTheme } = useTheme();
 const { getRoutes, push: navigateTo } = useRouter();
@@ -48,7 +49,9 @@ initTheme();
           <span>© {{ new Date().getFullYear() }} Kaelyx.</span>
         </template>
         <template #right>
-          <span>Social Links... eventually</span>
+          <Link type="primary" href="#">
+            <SvgIcon name="github"/>
+          </Link>
         </template>
       </TwoColumn>
     </footer>

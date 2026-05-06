@@ -1,0 +1,13 @@
+@use '../settings/settings' as *;
+@use '../utils/utils' as *;
+
+%link-reset {
+    color: inherit;
+    text-decoration: none;
+}
+
+.link {
+    @include button-styles();
+    @include link-styles();
+    @include add-all-classes()
+}

@@ -1,0 +1,21 @@
+.blog-post {
+    &__wrapper {
+        position: relative; 
+        display: flex;      
+        align-items: flex-start;
+    }
+    &__content {
+        flex:1;
+    }
+    &__controls {
+        position: sticky;
+        top: 1rem; 
+        align-self: flex-start;
+        
+        transition: top 0.5s ease-in-out;
+
+        &--bottom {
+            top: calc(100vh - 4rem); // adjust 4rem to match your button height + desired margin
+        }
+    }
+}

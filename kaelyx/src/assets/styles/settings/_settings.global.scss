@@ -1,1 +1,89 @@
+@use 'settings.colours' as *;
+@use 'settings.spacing' as *;
+@use 'settings.fonts' as *;
+
 $border-radius: 10px;
+
+@mixin button-variant ($name, $bg-colour, $text-colour: colour('black'), $dark-bg-colour: null, $light-bg-colour: null, $dark-text-colour: null, $light-text-colour: null) {
+    &--#{$name} { 
+        text-decoration: none;
+    
+        padding: spacing('lg');
+    
+        background-color: $bg-colour;
+        color: $text-colour;
+    
+        border-radius: $border-radius;
+        border: 2px solid black;
+        box-shadow: 4px 4px 0 black;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        width: fit-content;
+        
+        @if ($dark-bg-colour) {
+            [data-theme="dark"] & {
+                background-color: $dark-bg-colour;
+            }
+        }
+        
+        @if ($light-bg-colour) {
+            [data-theme="light"] & {
+                background-color: $light-bg-colour;
+            }
+        }
+        
+        @if ($dark-text-colour) {
+            [data-theme="dark"] & {
+                color: $dark-text-colour;
+            }
+        }
+        
+        @if ($light-text-colour) {
+            [data-theme="light"] & {
+                color: $light-text-colour;
+            }
+        }
+
+        &:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 black;    
+            transition: all 0.1s ease-in-out;
+        }
+    
+        &:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0 black;
+        }
+    }
+}
+
+@mixin link-variant ($name, $text-colour: colour('black'), $underline-colour: null, $dark-text-colour: null, $light-text-colour: null, $dark-underline-colour: null, $light-underline-colour: null) {
+    &--#{$name} {
+        
+    }
+}
+
+
+@mixin button-styles() {
+    @include button-variant('primary', colour('yellow'), colour('text'), colour('purple'));
+    @include button-variant('secondary', colour('orange'), colour('white'));
+    @include button-variant('tertiary', colour('blue'), colour('white'));
+
+
+}
+@mixin link-styles() {
+    
+}
+
+
+@mixin add-all-classes() {
+  @include add-bg-colour-classes();
+  @include add-text-colour-classes();
+  @include add-dark-bg-colour-classes();
+  @include add-light-bg-colour-classes();
+  @include add-dark-text-colour-classes();
+  @include add-light-text-colour-classes();
+}

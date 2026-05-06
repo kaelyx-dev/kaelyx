@@ -80,7 +80,6 @@ $colour-map: map-merge($theme-global, $theme-light);
 
 
 @function get-colour-text-contrast($colour) {
-  // Simple luminance check for light/dark contrast
   $r: red($colour);
   $g: green($colour);
   $b: blue($colour);
@@ -144,15 +143,4 @@ $colour-map: map-merge($theme-global, $theme-light);
       }
     }
   }
-}
-
-
-
-@mixin add-all-classes() {
-  @include add-bg-colour-classes();
-  @include add-text-colour-classes();
-  @include add-dark-bg-colour-classes();
-  @include add-light-bg-colour-classes();
-  @include add-dark-text-colour-classes();
-  @include add-light-text-colour-classes();
 }

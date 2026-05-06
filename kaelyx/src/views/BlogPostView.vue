@@ -56,29 +56,30 @@ const handleBackClick = () => {
 </script>
 
 <template>
-    <div>
-        <Button @click="handleBackClick" background-colour="orange" text-colour="white" 
-        :class="{'btn--rotated' : !isAtTop}"
-        :style="{
-            position: 'fixed', 
-            bottom: '1rem', right: '1rem', 
-            zIndex: 1000 }">
-            <SvgIcon
-                name="arrow-back"
-            />
-        </Button>
-
-        <div v-if="notFound">
-            <p>Post not found.</p>
+    <div class="blog-post__wrapper">
+        <div class="blog-post__content">
+            <div v-if="notFound">
+                <p>Post not found.</p>
+            </div>
+            <div v-else-if="loading">
+                <p>Loading...</p>
+            </div>
+            <div v-else>
+                <h1>{{ postTitle }}</h1>
+                <p>{{ postDate }}</p>
+                <pre>{{ content }}</pre>
+                    <p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p>
+            </div>
         </div>
-        <div v-else-if="loading">
-            <p>Loading...</p>
-        </div>
-        <div v-else>
-            <h1>{{ postTitle }}</h1>
-            <p>{{ postDate }}</p>
-            <pre>{{ content }}</pre>
+        <div class="blog-post__controls" :class="{'blog-post__controls--bottom' : !isAtTop}">
+            <Button @click="handleBackClick" background-colour="orange" text-colour="white" 
+                :tooltip="isAtTop ? 'Go Back' : 'Back to Top'"
+                :class="[
+                    {'btn--rotated' : !isAtTop},
+                    'blog-post__control-button',
+                ]">
+                <SvgIcon name="arrow-back"/>
+            </Button>
         </div>
     </div>
-    <p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p>
 </template>

@@ -13,8 +13,6 @@ header {
     border-top: none;
     border-radius: 0 0 $border-radius $border-radius;
 
-
-
     @include until('tablet') {
         flex-direction: column;
         justify-content: center;
@@ -24,7 +22,7 @@ header {
 
 .title {
     color: colour('text');
-    @include font('h1');
+    @include font('title');
 
     @include until('tablet') {
         display: none;

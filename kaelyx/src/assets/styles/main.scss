@@ -6,15 +6,14 @@
 * {
   transition: all 0.2s ease-in-out;
   font-family: 'roboto', sans-serif;
+  font-size: font-size('p1');
+  scrollbar-gutter: stable;
 }
-
 
 body {
 
   $background-grid-size: 5em;
-
   min-height: 100svh;
-
   background-color: colour('body-background');
   color: colour('text');
 
@@ -26,6 +25,7 @@ body {
 
   display: flex;
   justify-content: center;
+  
 }
 
 #app {

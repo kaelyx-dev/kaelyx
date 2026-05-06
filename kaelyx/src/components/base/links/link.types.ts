@@ -1,9 +1,12 @@
-import type { ActionType, ButtonType, Colour, FontSize } from "@/types/global.types";
+import type { ActionType, FontSize, Colour } from "@/types/global.types";
 
-export const classPrefix = 'btn';
+export const classPrefix = 'link';
 
-export interface ButtonProps {
+export interface LinkProps {
+    href?: string;
     label?: string;
+    target?: '_blank' | '_self' | '_parent' | '_top';
+    
     type?: ActionType;
     font?: FontSize;
     tooltip?: string;
@@ -15,8 +18,4 @@ export interface ButtonProps {
     lightModeBackgroundColour?: Colour;
     darkModeTextColour?: Colour;
     lightModeTextColour?: Colour;
-}
-
-export interface ButtonEmits {
-    click: [event: PointerEvent];
 }

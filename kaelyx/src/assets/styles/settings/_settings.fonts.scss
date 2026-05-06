@@ -9,12 +9,13 @@
 }
 
 $font-map: (
-    h1:     (3em, 125%, 0px),
-    h2:     (2em, 125%, 0px),
-    h3:     (1.5em, 125%, 0px),
-    p1:     (1.5em, 125%, 0px),
-    p2:     (1.25em, 125%, 0px),
-    p3:     (1em, 125%, 0px),
+    title:  (3em, 125%, 0px),
+    h1:     (2em, 125%, 0px),
+    h2:     (1.5em, 125%, 0px),
+    h3:     (1.25em, 125%, 0px),
+    p1:     (1em, 125%, 0px),
+    p2:     (0.875em, 125%, 0px),
+    p3:     (0.5em, 125%, 0px),
 );
 
 $k-fontfamily-list: (
@@ -35,6 +36,15 @@ $k-fontfamily-list: (
     font-size: $size;
     line-height: $lineHeight;
     letter-spacing: $letterSpacing;
+}
+
+@function font-size($name) {
+    @if not map.has-key($font-map, $name) {
+        @error "Font '#{$name}' not found in \$k-font-map.";
+    }
+
+    $font: map.get($font-map, $name);
+    @return list.nth($font, 1);
 }
 
 @mixin add-font-classes() {
