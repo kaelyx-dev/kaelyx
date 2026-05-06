@@ -31,7 +31,8 @@ export const useIcons = () => {
                     inner += new XMLSerializer().serializeToString(node)
                 }
             })
-            return `<symbol id="${icon.name}" viewBox="0 0 24 24">${inner}</symbol>`
+            const viewBox = svgElement.getAttribute('viewBox') ?? '0 0 24 24'
+            return `<symbol id="${icon.name}" viewBox="${viewBox}">${inner}</symbol>`
         }).join('')
         // Return a VNode with v-html for the sprite map
         return h('svg', { style: 'display:none', innerHTML: symbols })

@@ -4,7 +4,7 @@ import { useTheme } from '@composable/useTheme';
 import { useIcons } from '@composable/useIcons';
 import Button from '@component/base/buttons/Button.vue';
 import TwoColumn from './components/layout/TwoColumn.vue';
-import SvgIcon from '@component/base/icons/Icon.vue';
+import SvgIcon from '@component/base/icons/SvgIcon.vue';
 
 const { initTheme, isLight, toggleTheme } = useTheme();
 const { getRoutes, push: navigateTo } = useRouter();
@@ -16,9 +16,9 @@ initTheme();
 </script>
 
 <template>
-    <component :is="createIconMapElement()" />
-    <header>
-      <nav class="nav">
+  <component :is="createIconMapElement()" />
+  <header>
+    <nav class="nav">
         <div class="nav__title">
           <span>Kaelyx</span>
         </div>

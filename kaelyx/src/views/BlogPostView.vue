@@ -2,6 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useBlog } from '@composable/useBlog'
+import Button from '@component/base/buttons/Button.vue';
+import SvgIcon from '@component/base/icons/SvgIcon.vue';
 
 const route = useRoute()
 const router = useRouter()
@@ -29,7 +31,9 @@ onMounted(async () => {
 
 <template>
     <div>
-        <button @click="router.push({ name: 'Blog' })">Back</button>
+        <Button @click="() => router.push({ name: 'Blog' })" background-colour="orange" text-colour="white">
+            <SvgIcon name="arrow-back"/>
+        </Button>
 
         <div v-if="notFound">
             <p>Post not found.</p>
