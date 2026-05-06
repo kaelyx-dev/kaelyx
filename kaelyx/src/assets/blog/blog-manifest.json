@@ -1,0 +1,12 @@
+{
+  "posts": [
+    {
+      "title": "this is a test",
+      "date": "2026-05-06",
+      "tags": [
+        "test"
+      ],
+      "path": "public/blog/2026-05-06-this-is-a-test.md"
+    }
+  ]
+}

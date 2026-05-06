@@ -24,7 +24,7 @@ initTheme();
         </div>
         <div class="nav__links">
           <Button 
-          v-for="(route, index) in getRoutes()" 
+          v-for="(route, index) in getRoutes().filter(r => !r.meta?.hide)" 
           :key="index" 
           :label="(route.name as string)"
           @click="() => { navigateTo(route.path) }" 
@@ -43,7 +43,6 @@ initTheme();
       </nav>
     </header>
     <main>
-      <SvgIcon name="github"/>
       <RouterView />
     </main>
     <footer>

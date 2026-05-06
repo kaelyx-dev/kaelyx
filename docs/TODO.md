@@ -1,9 +1,7 @@
 todo
 
 blog engine
-blog meta extration
-blog manifest command
-create-new-post command
+blog nav
 
 main block styling
 footer styling
@@ -11,7 +9,7 @@ shortcode engine
 projects engine
 projects manifest command
 
-tools manifrst command
+tools manifest command
 tools engine
 
 remove comments and newlines from icon svgs

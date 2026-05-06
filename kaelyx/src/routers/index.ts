@@ -22,6 +22,18 @@ const routes = [
         path: "/blog",
         name: "Blog",
         component: () => import("@view/BlogView.vue")
+    },
+    {
+        path: "/blog/:slug",
+        name: "BlogPost",
+        component: () => import("@view/BlogPostView.vue"),
+        meta: { hide: true }
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        name: "NotFound",
+        component: () => import("@view/NotFoundView.vue"),
+        meta: { hide: true }
     }
 ]
 

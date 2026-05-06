@@ -1,0 +1,8 @@
+{
+    "title" : "Kaelyx",
+    "base"  : "kaelyx.dev",
+
+    "paths" : {
+        "blog" : "/public/blog/"
+    }
+}
