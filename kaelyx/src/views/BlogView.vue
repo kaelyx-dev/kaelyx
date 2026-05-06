@@ -1,13 +1,3 @@
-<script setup lang="ts">
-import { useRouter } from 'vue-router'
-import { useBlog } from '@composable/useBlog'
-
-const router = useRouter()
-const { getBlogPosts, getSlug } = useBlog()
-
-const posts = getBlogPosts()
-</script>
-
 <template>
     <ul>
         <li v-for="post in posts" :key="post.path">
@@ -17,3 +7,17 @@ const posts = getBlogPosts()
         </li>
     </ul>
 </template>
+
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+import { useBlog } from '@composable/useBlog'
+import { onMounted } from 'vue'
+
+const router = useRouter()
+const { getBlogPosts, getSlug } = useBlog()
+
+const posts = getBlogPosts()
+
+</script>
+
+

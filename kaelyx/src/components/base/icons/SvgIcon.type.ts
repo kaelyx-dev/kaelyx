@@ -1,4 +1,5 @@
 import type { Colour } from "@/types/global.types"
+import type { StyleValue } from 'vue'
 
 export const classPrefix = 'icon'
 
@@ -8,4 +9,6 @@ export interface SvgIconProps {
     color?: Colour,
     lightModeColour?: Colour,
     darkModeColour?: Colour
+
+    style?: StyleValue
 }

@@ -18,6 +18,19 @@ const content = ref<string>('')
 const loading = ref(true)
 const notFound = ref(false)
 
+const isAtTop = ref(true)
+
+const checkScrollPosition = () => {
+    if(window.scrollY == 0) {
+        console.log('Scrolled to top')
+        isAtTop.value = true
+    }
+    else {
+        console.log('Not at top')
+        isAtTop.value = false
+    }
+}
+window.addEventListener('scroll', checkScrollPosition)
 onMounted(async () => {
     if (!post) {
         notFound.value = true
@@ -26,13 +39,33 @@ onMounted(async () => {
     }
     content.value = await fetchBlogContent(post)
     loading.value = false
+
+    checkScrollPosition()
 })
+
+
+const handleBackClick = () => {
+    if (isAtTop.value) {
+        router.push({ name: 'Blog' })
+    } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+}
+
+
 </script>
 
 <template>
     <div>
-        <Button @click="() => router.push({ name: 'Blog' })" background-colour="orange" text-colour="white">
-            <SvgIcon name="arrow-back"/>
+        <Button @click="handleBackClick" background-colour="orange" text-colour="white" 
+        :class="{'btn--rotated' : !isAtTop}"
+        :style="{
+            position: 'sticky', 
+            bottom: '1rem', left: '1rem', 
+            zIndex: 1000 }">
+            <SvgIcon
+                name="arrow-back"
+            />
         </Button>
 
         <div v-if="notFound">
