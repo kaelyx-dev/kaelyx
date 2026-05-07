@@ -16,7 +16,7 @@
 </template>
 <script setup lang="ts">
 import Style from '@/utils/Style';
-import { classPrefix, type LinkProps } from './link.types';
+import { classPrefix, type LinkProps } from './link.type';
 const props = withDefaults(defineProps<LinkProps>(), {
     target: '_self',
 });

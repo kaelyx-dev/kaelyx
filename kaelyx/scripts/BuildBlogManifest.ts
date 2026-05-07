@@ -4,12 +4,13 @@ import fs from "fs"
 
 const blogDirectory = "public/blog"
 const blogManifestFile = "src/assets/blog/blog-manifest.json"
+const wordsPerMinuteReadTime = 200
 
 const runScript = async () => {
     console.log("Building blog manifest...")
 
     const blogManifest = {
-        posts: [] as { title: string, date: string, tags: string[], path: string }[]
+        posts: [] as { title: string, date: string, tags: string[], path: string, readTime: number }[]
     }
 
     try {
@@ -27,7 +28,8 @@ const runScript = async () => {
                         title: titleMatch[1],
                         date: dateMatch[1],
                         tags: tagsMatch[1].split(',').map(tag => tag.trim()),
-                        path: filePath
+                        path: filePath,
+                        readTime: content.split(/\s+/).length / wordsPerMinuteReadTime
                     })
                 }
             }

@@ -1,22 +1,23 @@
 # todo
 
-# site
+# Immediates
+update blog manifest script to work with yaml configs at the top, not html ones
+link styling
+toast service
 
+# site
 move site contents out of App.vue and into respective components 
 get useLinks working and replace hardcoded links in app.vue.
-toast service
 
 # blog
 blog engine - implement BlogParser, BlogShortcodes, BlogRenderer pipeline
 blog nav - previous/next post navigation
 blog tags - tag filtering on BlogView
-blog reading time shortcode
 blog share button functionality - navigator.share()
-blog copy link button functionality
+blog copy link button functionality - update to use toast service.
 render markdown instead of raw pre tag
 add a reading time area.
 blog auto tagger on build of manifest
-
 
 # shortcodes
 shortcode engine - BlogShortcodes.ts registry + placeholder injection
@@ -49,15 +50,6 @@ use .env for target platform, add .env.example, add .env to .gitignore
 
 # code quality and SOLID
 
-- [x] fix TwoColumn class binding
-- [x] move window.addEventListener into onMounted in BlogPostView
-- [x] memoize icon sprite map at module init in useIcons
-- [x] consolidate Theme type to global.types
-- [x] fix scroll listener teardown with onUnmounted
-- [x] switch router to createWebHistory
-- [x] fix transition rule - use @each loop per property
-
-- fix link.types.ts filename to link.type.ts (naming consistency)
 - implement 404.html for gh-pages SPA fallback
 - expose buildStyle directly in Style.ts for O/C principle compliance
 - move Button/Link colour props into shared ThemedColourProps interface in global.types

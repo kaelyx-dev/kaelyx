@@ -1,5 +1,5 @@
 import { useConfig } from "@composable/useConfig"
-import { type LinkProps } from "@component/base/links/link.types"
+import { type LinkProps } from "@/components/base/links/link.type"
 export interface LinkObject {
     name: string
     href: string
