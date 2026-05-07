@@ -1,3 +1,6 @@
+@use '../utils/utils' as *;
+@use '../settings/settings' as *;
+
 .blog-post {
     &__wrapper {
         position: relative; 
@@ -8,14 +11,31 @@
         flex:1;
     }
     &__controls {
-        position: sticky;
-        top: 1rem; 
+        top: 1rem;
         align-self: flex-start;
-        
+
+        display: flex;
+        flex-direction: column;
+        gap: spacing('md');
+    }
+    &__actions {
+        display: flex;
+        gap: spacing('md');
+        padding-right: spacing('md');
+        margin-left: auto;
+    }
+    &__back-control {
+        position: sticky;
+        top: 1rem;
+        align-self: flex-start;
         transition: top 0.5s ease-in-out;
 
+        & button {
+            transition: transform 0.45s ease-in-out;
+        }
+
         &--bottom {
-            top: calc(100vh - 4rem); // adjust 4rem to match your button height + desired margin
+            top: calc(100vh - 4rem);
         }
     }
 }

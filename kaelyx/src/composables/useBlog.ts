@@ -1,7 +1,7 @@
 import { useConfig } from "./useConfig"
 import BlogManifest from '@asset/blog/blog-manifest.json'
 
-export type BlogPost = typeof BlogManifest.posts[number]
+import type { BlogPost } from '@type/global.types'
 
 const toFetchPath = (manifestPath: string): string =>
     '/' + manifestPath.replace(/^public\//, '')
@@ -35,4 +35,4 @@ export const useBlog = () => {
     }
 
     return { base, blogPath, getBlogPosts, getBlogPost, getBlogPostBySlug, getSlug, fetchBlogContent }
-}   
+}

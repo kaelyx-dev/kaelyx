@@ -1,6 +1,5 @@
 import { ref } from 'vue'
-
-export type Theme = 'light' | 'dark'
+import type { Theme } from '@type/global.types'
 
 const currentTheme: ReturnType<typeof ref<Theme>> = ref('dark')
 

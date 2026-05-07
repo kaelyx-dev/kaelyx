@@ -9,9 +9,13 @@ const args = Object.fromEntries(process.argv.slice(2)
 let date: string = (args.date ? new Date((() => { let [d, m, y] = args.date.split("/").map(Number); return new Date(y, m - 1, d); })()) : new Date()).toISOString().split('T')[0]
 
 const template = 
-`<!--Title: {{TITLE}}-->
-<!--Date: {{DATE}}-->
-<!--Tags: {{TAGS}}-->
+`
+---
+title : {{TITLE}}
+date  : {{DATE}}
+tags  : {{TAGS}}
+---
+
 # {{TITLE}}`
 
 .replaceAll(`{{TITLE}}`, args.title || 'New Post')

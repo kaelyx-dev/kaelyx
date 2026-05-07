@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useBlog } from '@composable/useBlog'
 import Button from '@component/base/buttons/Button.vue';
@@ -21,15 +21,10 @@ const notFound = ref(false)
 const isAtTop = ref(true)
 
 const checkScrollPosition = () => {
-    if(window.scrollY == 0) {
-        console.log('Scrolled to top')
-        isAtTop.value = true
-    }
-    else {
-        console.log('Not at top')
-        isAtTop.value = false
-    }
+    if (window.scrollY == 0) isAtTop.value = true
+    else isAtTop.value = false
 }
+
 window.addEventListener('scroll', checkScrollPosition)
 onMounted(async () => {
     if (!post) {
@@ -41,6 +36,10 @@ onMounted(async () => {
     loading.value = false
 
     checkScrollPosition()
+})
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', checkScrollPosition)
 })
 
 
@@ -65,20 +64,111 @@ const handleBackClick = () => {
                 <p>Loading...</p>
             </div>
             <div v-else>
-                <h1>{{ postTitle }}</h1>
+                <div style="display: flex;">
+                    <h1>{{ postTitle }}</h1>
+                    <div class="blog-post__actions">
+                        <Button background-colour="orange" text-colour="white" :class="['blog-post__control-button']">
+                            <SvgIcon name="share" />
+                        </Button>
+                        <Button background-colour="orange" text-colour="white" :class="['blog-post__control-button']">
+                            <SvgIcon name="link" />
+                        </Button>
+                    </div>
+                </div>
                 <p>{{ postDate }}</p>
                 <pre>{{ content }}</pre>
-                    <p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p><p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
+                <p>a</p>
             </div>
         </div>
-        <div class="blog-post__controls" :class="{'blog-post__controls--bottom' : !isAtTop}">
-            <Button @click="handleBackClick" background-colour="orange" text-colour="white" 
-                :tooltip="isAtTop ? 'Go Back' : 'Back to Top'"
-                :class="[
-                    {'btn--rotated' : !isAtTop},
+        <div class="blog-post__back-control" :class="{ 'blog-post__back-control--bottom': !isAtTop }">
+            <Button @click="handleBackClick" background-colour="orange" text-colour="white"
+                :tooltip="isAtTop ? 'Go Back' : 'Back to Top'" :class="[
+                    { 'btn--rotated': !isAtTop },
                     'blog-post__control-button',
                 ]">
-                <SvgIcon name="arrow-back"/>
+                <SvgIcon name="arrow-back" />
             </Button>
         </div>
     </div>

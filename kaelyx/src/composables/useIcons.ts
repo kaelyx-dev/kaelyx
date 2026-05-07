@@ -32,7 +32,11 @@ export const useIcons = () => {
                 }
             })
             const viewBox = svgElement.getAttribute('viewBox') ?? '0 0 24 24'
-            return `<symbol id="${icon.name}" viewBox="${viewBox}">${inner}</symbol>`
+            const fill = svgElement.getAttribute('fill')
+            const stroke = svgElement.getAttribute('stroke')
+            const fillAttr = fill != null ? ` fill="${fill}"` : ''
+            const strokeAttr = stroke != null ? ` stroke="${stroke}"` : ''
+            return `<symbol id="${icon.name}" viewBox="${viewBox}"${fillAttr}${strokeAttr}>${inner}</symbol>`
         }).join('')
         // Return a VNode with v-html for the sprite map
         return h('svg', { style: 'display:none', innerHTML: symbols })

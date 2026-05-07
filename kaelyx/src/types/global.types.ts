@@ -7,3 +7,10 @@ export type FontSize = 'h1' | 'h2' | 'h3' | 'p1' | 'p2' | 'p3';
 export type LinkType = 'link' | 'negative-link';
 export type ButtonType = 'primary' | 'secondary' | 'tertiary';
 export type ActionType = LinkType | ButtonType;
+
+export interface BlogPost {
+    title: string;
+    date: string;
+    tags: string[];
+    path: string;
+}

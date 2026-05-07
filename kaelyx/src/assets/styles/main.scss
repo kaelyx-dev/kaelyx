@@ -4,35 +4,45 @@
 @use 'components/components' as *;
 
 * {
-  transition: all 0.2s ease-in-out;
   font-family: 'roboto', sans-serif;
-  font-size: font-size('p1');
   scrollbar-gutter: stable;
 }
 
 body {
+  display: flex;
+  justify-content: center;
 
-  $background-grid-size: 5em;
   min-height: 100svh;
   background-color: colour('body-background');
-  color: colour('text');
 
+  color: colour('text');
+  font-size: font-size('p1');
+  
+  $background-grid-size: 5em;
   background-size: $background-grid-size $background-grid-size;
   background-position: $background-grid-size/2 $background-grid-size/2;
   background-image:
     linear-gradient(to right, colour('body-accent') 1px, transparent 1px),
     linear-gradient(to bottom, colour('body-accent') 1px, transparent 1px);
-
-  display: flex;
-  justify-content: center;
-  
 }
 
 #app {
   display: flex;
   flex-direction: column;
   gap: spacing('xl');
-
   width: responsive-width(100%, 70%, get-breakpoint('mobile'), get-breakpoint('widescreen'));
+}
 
+
+body, main, header, footer, button, a, span, p {
+    $fade-transition-duration: 0.2s;
+    $fade-transition-timing: ease-in-out;
+
+    $transition-properties: color, background-color, border-color, box-shadow;
+
+    $transitions: ();
+    @each $prop in $transition-properties {
+        $transitions: append($transitions, $prop $fade-transition-duration $fade-transition-timing, comma);
+    }
+    transition: $transitions;
 }

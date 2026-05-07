@@ -3,7 +3,7 @@ import { RouterView, useRouter } from 'vue-router'
 import { useTheme } from '@composable/useTheme';
 import { useIcons } from '@composable/useIcons';
 import Button from '@component/base/buttons/Button.vue';
-import TwoColumn from './components/layout/TwoColumn.vue';
+import TwoColumn from '@component/layout/TwoColumn.vue';
 import SvgIcon from '@component/base/icons/SvgIcon.vue';
 import Link from '@component/base/links/Link.vue';
 
