@@ -1,17 +1,15 @@
 // ─── Raw palette ────────────────────────────────────────────
-$red: #F42C04;
-$purple: #9b5de5;
-$pink: #f15bb5;
-$orange: #F26419;
-$yellow: #ffeb6b;
-$blue: #00bbf9;
-$green: #00f5d4;
+$purple: #B8A9FA;
+$pink: #FF6B6B;
+$orange: #FFA552;
+$yellow: #FFD23F;
+$blue: #74B9FF;
+$green: #88D498;
 $black: #333;
 $white: #eee;
 
 $theme-global: (
   'pink': $pink,
-  'red': $red,
   'orange': $orange,
   'yellow': $yellow,
   'green': $green,
@@ -21,7 +19,7 @@ $theme-global: (
   'black': $black,
   'white': $white,
 
-  'error': $red,
+  'error': $pink,
   'warning': $orange,
   'success': $green,
 

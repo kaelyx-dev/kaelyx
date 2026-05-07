@@ -68,9 +68,9 @@ $border-radius: 10px;
 
 
 @mixin button-styles() {
-    @include button-variant('primary', colour('yellow'), colour('text'), colour('purple'));
-    @include button-variant('secondary', colour('orange'), colour('white'));
-    @include button-variant('tertiary', colour('blue'), colour('white'));
+    @include button-variant('primary', colour('yellow'), colour('black'), colour('purple'));
+    @include button-variant('secondary', colour('orange'), colour('black'), colour('pink'));
+    @include button-variant('tertiary', colour('pink'), colour('black'), colour('orange'));
 
 
 }

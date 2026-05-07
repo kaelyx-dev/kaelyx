@@ -27,13 +27,9 @@ initTheme();
           :key="index" 
           :label="(route.name as string)"
           @click="() => { navigateTo(route.path) }" 
-          
-          light-mode-background-colour="yellow"
-          light-mode-text-colour="black"
-          dark-mode-background-colour="purple"
-          dark-mode-text-colour="white"
+          type="primary"
           />
-          <Button @click="() => toggleTheme()" background-colour="orange" text-colour="white">
+          <Button @click="() => toggleTheme()" type="secondary">
             <SvgIcon v-if="isLight()" name="sun"/>
             <SvgIcon v-else name="moon"/>
           </Button>
