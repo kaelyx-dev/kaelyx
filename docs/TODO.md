@@ -4,7 +4,9 @@
 update blog manifest script to work with yaml configs at the top, not html ones
 link styling
 toast service
-
+explore https://vite-plugin-ssr.com/pre-rendering
+explore scss @return bug somewhere
+get a deploy pipeline setup with a prod/deploy branch and a uat/testing branch 
 # site
 move site contents out of App.vue and into respective components 
 get useLinks working and replace hardcoded links in app.vue.
