@@ -3,6 +3,13 @@ import BlogManifest from '@asset/blog/blog-manifest.json'
 
 import type { BlogPost } from '@type/global.types'
 
+// import BlogManifest from '@asset/blog/blog-manifest.json'
+// const defaultSource: BlogPost[] = BlogManifest.posts
+// export const useBlog = (source: BlogPost[] = defaultSource) => {
+//     const getBlogPosts = (): BlogPost[] => source
+//     ...
+// }
+
 const toFetchPath = (manifestPath: string): string =>
     '/' + manifestPath.replace(/^public\//, '')
 

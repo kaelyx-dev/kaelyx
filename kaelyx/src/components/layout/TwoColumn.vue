@@ -1,8 +1,8 @@
 <template>
     <div 
     :class="    
-        classPrefix,
-        { [`${classPrefix}--right-on-top`]: !leftOnTop }
+        [classPrefix,
+        { [`${classPrefix}--right-on-top`]: !leftOnTop }]
     ">
         <div :class="`${classPrefix}--left`">
             <slot name="left"></slot>
@@ -24,8 +24,4 @@ const leftOnTop = computed(() => {
     else return true;
 });
 
-const containerClasses = computed(() => [
-    classPrefix,
-    { [`${classPrefix}--right-on-top`]: !leftOnTop.value }
-]);
 </script>

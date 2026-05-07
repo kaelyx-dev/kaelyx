@@ -25,7 +25,6 @@ const checkScrollPosition = () => {
     else isAtTop.value = false
 }
 
-window.addEventListener('scroll', checkScrollPosition)
 onMounted(async () => {
     if (!post) {
         notFound.value = true
@@ -36,6 +35,7 @@ onMounted(async () => {
     loading.value = false
 
     checkScrollPosition()
+    window.addEventListener('scroll', checkScrollPosition)
 })
 
 onUnmounted(() => {
@@ -51,6 +51,21 @@ const handleBackClick = () => {
     }
 }
 
+const isShareModalDisplayed = ref(false)
+const toggleShareModal = () => {
+    isShareModalDisplayed.value = !isShareModalDisplayed.value
+}
+
+const copyLinkToClipboard = () => {
+    const url = window.location.href
+    navigator.clipboard.writeText(url)
+        .then(() => {
+            alert('Link copied to clipboard!')
+        })
+        .catch(err => {
+            console.error('Failed to copy link: ', err)
+        })
+}
 
 </script>
 
@@ -67,99 +82,16 @@ const handleBackClick = () => {
                 <div style="display: flex;">
                     <h1>{{ postTitle }}</h1>
                     <div class="blog-post__actions">
-                        <Button background-colour="orange" text-colour="white" :class="['blog-post__control-button']">
+                        <Button @click="toggleShareModal" background-colour="orange" text-colour="white" :class="['blog-post__control-button']">
                             <SvgIcon name="share" />
                         </Button>
-                        <Button background-colour="orange" text-colour="white" :class="['blog-post__control-button']">
+                        <Button @click="copyLinkToClipboard" background-colour="orange" text-colour="white" :class="['blog-post__control-button']">
                             <SvgIcon name="link" />
                         </Button>
                     </div>
                 </div>
                 <p>{{ postDate }}</p>
                 <pre>{{ content }}</pre>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
             </div>
         </div>
         <div class="blog-post__back-control" :class="{ 'blog-post__back-control--bottom': !isAtTop }">
