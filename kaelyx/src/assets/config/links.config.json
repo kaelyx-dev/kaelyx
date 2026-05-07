@@ -1,0 +1,21 @@
+{
+    "config": {
+        "defaultTarget": "_blank"
+    },
+    "links": [
+        {
+            "name": "github",
+            "href": "https://github.com/kaelyx-dev"
+        },
+        {
+            "name": "linkedin",
+            "href": "https://www.linkedin.com/in/kaelyx/"
+        }
+    ],
+    "groups": {
+        "footer": [
+            "github",
+            "linkedin"
+        ]
+    }
+}

@@ -2,6 +2,7 @@
 import { RouterView, useRouter } from 'vue-router'
 import { useTheme } from '@composable/useTheme';
 import { useIcons } from '@composable/useIcons';
+import { useLinks } from '@composable/useLinks';
 import Button from '@component/base/buttons/Button.vue';
 import TwoColumn from '@component/layout/TwoColumn.vue';
 import SvgIcon from '@component/base/icons/SvgIcon.vue';
@@ -11,6 +12,7 @@ const { initTheme, isLight, toggleTheme } = useTheme();
 const { getRoutes, push: navigateTo } = useRouter();
 
 const {createIconMapElement } = useIcons();
+const { getLink, getLinks } = useLinks();
 
 initTheme();
 
@@ -45,8 +47,11 @@ initTheme();
           <span>© {{ new Date().getFullYear() }} Kaelyx.</span>
         </template>
         <template #right>
-          <Link type="primary" href="#">
+          <Link type="primary" href="https://www.linkedin.com/in/kaelyx/" target="_blank">
             <SvgIcon name="github"/>
+          </Link>
+          <Link type="primary" href="#" target="_blank">
+            <SvgIcon name="linkedin"/>
           </Link>
         </template>
       </TwoColumn>

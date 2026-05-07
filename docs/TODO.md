@@ -1,5 +1,10 @@
 # todo
 
+# site
+
+move site contents out of App.vue and into respective components 
+get useLinks working and replace hardcoded links in app.vue.
+
 
 # blog
 blog engine - implement BlogParser, BlogShortcodes, BlogRenderer pipeline
@@ -10,6 +15,7 @@ blog share button functionality
 blog copy link button functionality
 render markdown instead of raw pre tag
 add a reading time area.
+blog auto tagger on build of manifest
 
 
 # shortcodes
@@ -22,14 +28,12 @@ projects engine
 projects manifest command - BuildProjectManifest.ts
 projects view layout
 
-
 # styling
 main block styling
 footer styling
 nav mobile layout
 blog post page layout
 responsive typography scale
-
 
 # icons
 remove comments and newlines from icon svgs
