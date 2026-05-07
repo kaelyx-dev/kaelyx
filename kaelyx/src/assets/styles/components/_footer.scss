@@ -9,5 +9,20 @@ footer {
     border-bottom: none;
     border-radius: $border-radius $border-radius 0 0;
     
-    padding: spacing('lg');
+    padding: spacing('md') spacing('lg');
+    
+    & .footer {
+        &__copyright {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 100%;
+        }
+        &__links {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            gap: spacing('md');
+        }
+    }
 }

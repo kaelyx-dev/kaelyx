@@ -3,25 +3,43 @@
 @use 'settings.fonts' as *;
 
 $border-radius: 10px;
+$animation-duration: 0.2s;
 
-@mixin button-variant ($name, $bg-colour, $text-colour: colour('black'), $dark-bg-colour: null, $light-bg-colour: null, $dark-text-colour: null, $light-text-colour: null) {
+@mixin button-base ($bg-colour, $text-colour) {
+    text-decoration: none;
+    padding: spacing('lg');
+    background-color: $bg-colour;
+    color: $text-colour;
+    border-radius: $border-radius;
+    border: 2px solid black;
+    box-shadow: 4px 4px 0 black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    
+    &:hover {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0 black;    
+        transition: all 0.1s ease-in-out;
+    }
+    &:active {
+        transform: translate(4px, 4px);
+        box-shadow: 0px 0px 0 black;
+    }
+}
+
+
+@mixin simple-button-variant ($name, $bg-colour, $text-colour: colour('black')) {
     &--#{$name} { 
-        text-decoration: none;
-    
-        padding: spacing('lg');
-    
-        background-color: $bg-colour;
-        color: $text-colour;
-    
-        border-radius: $border-radius;
-        border: 2px solid black;
-        box-shadow: 4px 4px 0 black;
-    
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-        width: fit-content;
+        @include button-base($bg-colour, $text-colour);
+    }
+}
+
+
+@mixin button-variant ($name, $light-bg-colour: null, $light-text-colour: null, $dark-bg-colour: null, $dark-text-colour: null, ) {
+    &--#{$name} { 
+        @include button-base($light-bg-colour, $light-text-colour);
         
         @if ($dark-bg-colour) {
             [data-theme="dark"] & {
@@ -46,17 +64,6 @@ $border-radius: 10px;
                 color: $light-text-colour;
             }
         }
-
-        &:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0 black;    
-            transition: all 0.1s ease-in-out;
-        }
-    
-        &:active {
-            transform: translate(4px, 4px);
-            box-shadow: 0px 0px 0 black;
-        }
     }
 }
 
@@ -68,12 +75,28 @@ $border-radius: 10px;
 
 
 @mixin button-styles() {
-    @include button-variant('primary', colour('yellow'), colour('black'), colour('purple'));
-    @include button-variant('secondary', colour('orange'), colour('black'), colour('pink'));
-    @include button-variant('tertiary', colour('pink'), colour('black'), colour('orange'));
-
-
+    @include button-variant('primary', colour('yellow'), colour('black'), colour('dark-purple'), colour('white'));
+    @include button-variant('secondary', colour('orange'), colour('black'), colour('dark-blue'), colour('white'));
+    @include button-variant('tertiary', colour('pink'), colour('black'), colour('dark-green'), colour('white'));
+    
+    
+    @include simple-button-variant('pink', colour('pink'), colour('text'));
+    @include simple-button-variant('yellow', colour('yellow'), colour('text'));
+    @include simple-button-variant('orange', colour('orange'), colour('text'));
+    @include simple-button-variant('purple', colour('purple'), colour('text'));
+    @include simple-button-variant('green', colour('green'), colour('text'));
+    @include simple-button-variant('black', colour('black'), colour('white'));
+    @include simple-button-variant('white', colour('white'), colour('black'));
+    
+    @include simple-button-variant('dark-pink', colour('dark-pink'), colour('white'));
+    @include simple-button-variant('dark-yellow', colour('dark-yellow'), colour('white'));
+    @include simple-button-variant('dark-orange', colour('dark-orange'), colour('white'));
+    @include simple-button-variant('dark-purple', colour('dark-purple'), colour('white'));
+    @include simple-button-variant('dark-green', colour('dark-green'), colour('white'));
+    
+    @include button-variant('inverted', colour('black'), colour('white'), colour('white'), colour('black'))
 }
+
 @mixin link-styles() {
     
 }

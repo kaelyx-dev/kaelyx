@@ -11,6 +11,6 @@
         margin-left: auto;
         display: flex;
         flex-direction: row;
-        gap: responsive-size(spacing('md'), spacing('lg'), get-breakpoint('mobile'), get-breakpoint('tablet'));
+        gap: responsive-size(spacing('sm'), spacing('md'), get-breakpoint('mobile'), get-breakpoint('tablet'));
     }   
 }

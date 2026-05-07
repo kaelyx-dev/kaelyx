@@ -4,14 +4,14 @@
 
 move site contents out of App.vue and into respective components 
 get useLinks working and replace hardcoded links in app.vue.
-
+toast service
 
 # blog
 blog engine - implement BlogParser, BlogShortcodes, BlogRenderer pipeline
 blog nav - previous/next post navigation
 blog tags - tag filtering on BlogView
 blog reading time shortcode
-blog share button functionality
+blog share button functionality - navigator.share()
 blog copy link button functionality
 render markdown instead of raw pre tag
 add a reading time area.

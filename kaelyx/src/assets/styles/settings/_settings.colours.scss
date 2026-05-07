@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // ─── Raw palette ────────────────────────────────────────────
 $purple: #B8A9FA;
 $pink: #FF6B6B;
@@ -8,6 +10,8 @@ $green: #88D498;
 $black: #333;
 $white: #eee;
 
+
+$darken-amount: 5%;
 $theme-global: (
   'pink': $pink,
   'orange': $orange,
@@ -15,6 +19,13 @@ $theme-global: (
   'green': $green,
   'blue': $blue,
   'purple': $purple,
+  
+  'dark-pink': color.adjust($pink, $lightness: -$darken-amount),
+  'dark-orange': color.adjust($orange, $lightness: -$darken-amount),
+  'dark-yellow': color.adjust($yellow, $lightness: -$darken-amount),
+  'dark-green': color.adjust($green, $lightness: -$darken-amount),
+  'dark-blue': color.adjust($blue, $lightness: -$darken-amount),
+  'dark-purple': color.adjust($purple, $lightness: -$darken-amount),
 
   'black': $black,
   'white': $white,

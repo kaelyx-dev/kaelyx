@@ -2,17 +2,17 @@
     "config": {
         "defaultTarget": "_blank"
     },
-    "links": [
-        {
-            "name": "github",
-            "href": "https://github.com/kaelyx-dev"
-        },
-        {
-            "name": "linkedin",
-            "href": "https://www.linkedin.com/in/kaelyx/"
+    "links": {   
+        "github" : {
+            "href": "https://github.com/kaelyx-dev",
+            "icon": "github"
+        },    
+        "linkedin" : {
+            "href": "https://www.linkedin.com/in/kaelyx/",
+            "icon": "linkedin"
         }
-    ],
-    "groups": {
+    },
+    "link-groups": {
         "footer": [
             "github",
             "linkedin"

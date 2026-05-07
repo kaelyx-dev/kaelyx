@@ -35,10 +35,10 @@ body {
 
 
 body, main, header, footer, button, a, span, p {
-    $fade-transition-duration: 0.2s;
+    $fade-transition-duration: $animation-duration;
     $fade-transition-timing: ease-in-out;
 
-    $transition-properties: color, background-color, border-color, box-shadow;
+    $transition-properties: color, background-color, border-color;
 
     $transitions: ();
     @each $prop in $transition-properties {

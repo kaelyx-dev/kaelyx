@@ -57,7 +57,7 @@ const toggleShareModal = () => {
 }
 
 const copyLinkToClipboard = () => {
-    const url = window.location.href
+    const url = globalThis.location.href
     navigator.clipboard.writeText(url)
         .then(() => {
             alert('Link copied to clipboard!')
@@ -82,10 +82,10 @@ const copyLinkToClipboard = () => {
                 <div style="display: flex;">
                     <h1>{{ postTitle }}</h1>
                     <div class="blog-post__actions">
-                        <Button @click="toggleShareModal" background-colour="orange" text-colour="white" :class="['blog-post__control-button']">
+                        <Button @click="toggleShareModal" type="secondary" :class="['blog-post__control-button']">
                             <SvgIcon name="share" />
                         </Button>
-                        <Button @click="copyLinkToClipboard" background-colour="orange" text-colour="white" :class="['blog-post__control-button']">
+                        <Button @click="copyLinkToClipboard" type="secondary" :class="['blog-post__control-button']">
                             <SvgIcon name="link" />
                         </Button>
                     </div>
@@ -95,7 +95,7 @@ const copyLinkToClipboard = () => {
             </div>
         </div>
         <div class="blog-post__back-control" :class="{ 'blog-post__back-control--bottom': !isAtTop }">
-            <Button @click="handleBackClick" background-colour="orange" text-colour="white"
+            <Button @click="handleBackClick" type="secondary"
                 :tooltip="isAtTop ? 'Go Back' : 'Back to Top'" :class="[
                     { 'btn--rotated': !isAtTop },
                     'blog-post__control-button',

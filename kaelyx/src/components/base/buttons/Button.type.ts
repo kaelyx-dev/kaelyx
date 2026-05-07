@@ -1,4 +1,4 @@
-import type { ActionType, ButtonType, Colour, FontSize } from "@/types/global.types";
+import type { ActionType, Colour, FontSize } from "@/types/global.types";
 
 export const classPrefix = 'btn';
 
