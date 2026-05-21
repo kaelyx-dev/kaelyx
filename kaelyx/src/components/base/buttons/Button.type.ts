@@ -1,20 +1,12 @@
-import type { ActionType, Colour, FontSize } from "@/types/global.types";
+import type { ActionType, FontSize, ThemedColourProps } from "@/types/global.types";
 
 export const classPrefix = 'btn';
 
-export interface ButtonProps {
+export interface ButtonProps extends ThemedColourProps {
     label?: string;
     type?: ActionType;
     font?: FontSize;
     tooltip?: string;
-    
-    backgroundColour?: Colour;
-    textColour?: Colour;
-    
-    darkModeBackgroundColour?: Colour;
-    lightModeBackgroundColour?: Colour;
-    darkModeTextColour?: Colour;
-    lightModeTextColour?: Colour;
 }
 
 export interface ButtonEmits {

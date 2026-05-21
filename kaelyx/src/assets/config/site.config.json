@@ -4,5 +4,7 @@
 
     "paths" : {
         "blog" : "/public/blog/"
-    }
+    },
+    "defaultTitle" : "Kaelyx",
+    "titleBase" : "Kaelyx | {{TITLE}}"
 }

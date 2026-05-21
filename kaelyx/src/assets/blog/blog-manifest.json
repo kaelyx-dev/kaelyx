@@ -1,39 +1,5 @@
 {
-  "posts": [
-    {
-      "title": "this is a test",
-      "date": "2026-05-06",
-      "tags": [
-        "test"
-      ],
-      "categories": [],
-      "keywords": [],
-      "draft": false,
-      "unlisted": false,
-      "slug": "2026-05-06-this-is-a-test",
-      "route": "/2026-05-06-this-is-a-test",
-      "path": "public/blog/2026-05-06-this-is-a-test.md",
-      "readTime": 0.08
-    },
-    {
-      "title": "New Post",
-      "date": "2026-05-21",
-      "tags": [
-        "uncategorized"
-      ],
-      "categories": [
-        "projects"
-      ],
-      "keywords": [],
-      "draft": false,
-      "unlisted": false,
-      "slug": "2026-05-21-new-post",
-      "route": "/projects/2026-05-21-new-post",
-      "path": "public/blog/2026-05-21-new-post.md",
-      "readTime": 0.09
-    }
-  ],
-  "map": {
+  "posts": {
     "/2026-05-06-this-is-a-test": {
       "title": "this is a test",
       "date": "2026-05-06",
@@ -47,14 +13,27 @@
       "slug": "2026-05-06-this-is-a-test",
       "route": "/2026-05-06-this-is-a-test",
       "path": "public/blog/2026-05-06-this-is-a-test.md",
-      "readTime": 0.08
+      "readTime": 1
+    },
+    "/testing/2026-05-21-new-post-1": {
+      "title": "New Post",
+      "date": "2026-05-21",
+      "tags": [],
+      "categories": [
+        "testing"
+      ],
+      "keywords": [],
+      "draft": true,
+      "unlisted": true,
+      "slug": "2026-05-21-new-post-1",
+      "route": "/testing/2026-05-21-new-post-1",
+      "path": "public/blog/2026-05-21-new-post-1.md",
+      "readTime": 1
     },
     "/projects/2026-05-21-new-post": {
       "title": "New Post",
       "date": "2026-05-21",
-      "tags": [
-        "uncategorized"
-      ],
+      "tags": [],
       "categories": [
         "projects"
       ],
@@ -64,7 +43,14 @@
       "slug": "2026-05-21-new-post",
       "route": "/projects/2026-05-21-new-post",
       "path": "public/blog/2026-05-21-new-post.md",
-      "readTime": 0.09
+      "readTime": 1
     }
-  }
+  },
+  "categories": [
+    "testing",
+    "projects"
+  ],
+  "tags": [
+    "test"
+  ]
 }

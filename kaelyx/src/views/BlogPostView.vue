@@ -4,13 +4,16 @@ import { useRoute, useRouter } from 'vue-router'
 import { useBlog } from '@composable/useBlog'
 import Button from '@component/base/buttons/Button.vue';
 import SvgIcon from '@component/base/icons/SvgIcon.vue';
+import useDocument from '@/composables/useDocument';
 
 const route = useRoute()
 const router = useRouter()
-const { getBlogPostBySlug, fetchBlogContent } = useBlog()
+const { fetchPostContent, getPostFromPath, getBlogPath } = useBlog()
 
 const slug = route.params.slug as string
-const post = getBlogPostBySlug(slug)
+const category = route.params.category as string | undefined
+
+const post = getPostFromPath(getBlogPath(category, slug))
 const postTitle = post?.title ?? ''
 const postDate = post?.date ?? ''
 
@@ -31,15 +34,17 @@ onMounted(async () => {
         loading.value = false
         return
     }
-    content.value = await fetchBlogContent(post)
+    content.value = await fetchPostContent(post)
     loading.value = false
 
     checkScrollPosition()
     window.addEventListener('scroll', checkScrollPosition)
+    useDocument().setTitle(postTitle)
 })
 
 onUnmounted(() => {
     window.removeEventListener('scroll', checkScrollPosition)
+    useDocument().resetTitle()
 })
 
 
@@ -90,7 +95,6 @@ const copyLinkToClipboard = () => {
                         </Button>
                     </div>
                 </div>
-                <p>{{ postDate }}</p>
                 <pre>{{ content }}</pre>
             </div>
         </div>

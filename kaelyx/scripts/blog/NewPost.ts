@@ -1,6 +1,7 @@
 /// <reference types="node" />
 
-import fs from 'fs';
+import fs from 'node:fs';
+import { Frontmatter } from '../../src/utils/parsing/Frontmatter';
 
 const args = Object.fromEntries(process.argv.slice(2)
 .filter(arg => arg.startsWith('--'))
@@ -8,27 +9,30 @@ const args = Object.fromEntries(process.argv.slice(2)
 
 let date: string = (args.date ? new Date((() => { let [d, m, y] = args.date.split("/").map(Number); return new Date(y, m - 1, d); })()) : new Date()).toISOString().split('T')[0]
 
-const template = 
-`
----
-title : {{TITLE}}
-date  : {{DATE}}
-tags  : {{TAGS}}
----
+const frontmatterKVs = {
+    title: args.title || 'New Post',
+    date: date,
+    tags: args.tags || "",
+    draft: true,
+    unlisted: true
+}
 
-# {{TITLE}}`
+const template = `${Frontmatter.createFrontmatterString(frontmatterKVs)}\n\n# {{TITLE}}`
 
-.replaceAll(`{{TITLE}}`, args.title || 'New Post')
-.replaceAll(`{{DATE}}`, date)
-.replaceAll(`{{TAGS}}`, args.tags || 'uncategorized');
+const filename = `${date}-${args.title?.toLowerCase().replaceAll(" ", "-") || "new-post"}.md`
+let fileBase = `public/blog/${filename}`
 
-const fileBase = `public/blog/${date}-${args.title?.toLowerCase().replaceAll(" ", "-") || "new-post"}.md`
-
-if(fs.existsSync(fileBase)) {
-    console.error(`Error: A post with the title "${args.title}" already exists! Please choose a different title or delete the existing post.`)
-    process.exit(1)
+let currIdx = 1
+while(fs.existsSync(fileBase)) {
+    const newFileBase = fileBase.replace(/\.md$/, `-${currIdx}.md`)
+    if(!fs.existsSync(newFileBase)) {
+        fileBase = newFileBase
+        break
+    }
+    currIdx++
 }
 
 fs.writeFileSync(fileBase, template);
 
-console.log("New post created successfully!")
+
+console.log(`New post created successfully! - ${fileBase}`)

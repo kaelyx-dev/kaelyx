@@ -9,9 +9,9 @@ const routes = [
         component: HomeView
     },
     {
-        path: "/about",
-        name: "About",
-        component: () => import("@view/AboutView.vue")
+        path: "/tools",
+        name: "Tools",
+        component: () => import("@view/ToolView.vue")
     },
     {
         path: "/projects",
@@ -26,6 +26,12 @@ const routes = [
     {
         path: "/blog/:slug",
         name: "BlogPost",
+        component: () => import("@view/BlogPostView.vue"),
+        meta: { hide: true }
+    },
+    {
+        path: "/blog/:category/:slug",
+        name: "BlogPostWithCategory",
         component: () => import("@view/BlogPostView.vue"),
         meta: { hide: true }
     },

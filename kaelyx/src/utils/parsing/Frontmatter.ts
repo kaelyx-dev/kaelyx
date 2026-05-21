@@ -151,4 +151,21 @@ export class Frontmatter {
 
 		return parseBooleanLike(value)
 	}
+	
+	
+	public static createFrontmatterString(frontmatterObject: {}): string {
+		const lines: string[] = ["---"]
+		for (const [key, value] of Object.entries(frontmatterObject)) {
+			if (Array.isArray(value)) {
+				lines.push(`${key}:`)
+				for (const item of value) {
+					lines.push(`  - ${item}`)
+				}
+			} else {
+				lines.push(`${key}: ${value}`)
+			}
+		}
+		lines.push("---")
+		return lines.join("\n")
+	}
 }

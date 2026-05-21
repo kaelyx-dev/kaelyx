@@ -14,5 +14,21 @@ export interface BlogPost {
     title: string;
     date: string;
     tags: string[];
+    categories: string[];
+    keywords: string[];
+    draft: boolean;
+    unlisted: boolean;
+    slug: string;
+    route: string;
     path: string;
+    readTime: number;
+}
+
+export interface ThemedColourProps {
+    backgroundColour?: Colour
+    textColour?: Colour
+    darkModeBackgroundColour?: Colour
+    lightModeBackgroundColour?: Colour
+    darkModeTextColour?: Colour
+    lightModeTextColour?: Colour
 }

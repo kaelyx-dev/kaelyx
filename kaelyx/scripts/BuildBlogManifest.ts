@@ -1,7 +1,7 @@
 /// <reference types="node" />
 
-import fs from "fs"
-import { Frontmatter } from "../src/utils/parsing/frontmatter"
+import fs from "node:fs"
+import { Frontmatter } from "../src/utils/parsing/Frontmatter"
 
 const blogDirectory = "public/blog"
 const blogManifestFile = "src/assets/blog/blog-manifest.json"
@@ -42,17 +42,24 @@ const runScript = async () => {
     console.log("Building blog manifest...")
 
     const blogManifest = {
-        posts: {} as Record<string, BlogManifestPost>
+        posts: {} as Record<string, BlogManifestPost>,
+        categories: [] as string[],
+        tags: [] as string[]
     }
-
+    
+    const seenCategories = new Set<string>()
+    const seenTags = new Set<string>()    
+    
     try {
         const files: string[] = fs.readdirSync(blogDirectory)
         console.log(`Found ${files.length} blog posts in ${blogDirectory}`)
         for (const file of files) {
             if (file.endsWith('.md')) {
+                
                 const filePath = `${blogDirectory}/${file}`
                 const content = fs.readFileSync(filePath, 'utf-8')
                 const frontmatter = new Frontmatter(content)
+                
                 const title = frontmatter.getString("title") ?? ""
                 const date = frontmatter.getString("date") ?? ""
                 const tags = frontmatter.getList("tags") ?? []
@@ -66,6 +73,14 @@ const runScript = async () => {
                 const route = buildRoute(categories[0], slug)
 
                 if (title && date) {
+                    
+                    if(categories.length > 0) {
+                        categories.forEach(category => seenCategories.add(category))
+                    }
+                    if(tags.length > 0) {
+                        tags.forEach(tag => seenTags.add(tag))
+                    }
+                    
                     const post: BlogManifestPost = {
                         title,
                         date,
@@ -77,13 +92,20 @@ const runScript = async () => {
                         slug,
                         route,
                         path: filePath,
-                        readTime: content.split(/\s+/).length / wordsPerMinuteReadTime
+                        readTime: Math.max(content.split(/\s+/).length / wordsPerMinuteReadTime, 1)
                     }
 
                     blogManifest.posts[route] = post
                 }
             }
         }
+        
+        console.log(`Processed ${Object.keys(blogManifest.posts).length} blog posts.`)
+        console.log(`Found ${seenCategories.size} unique categories: ${[...seenCategories].join(", ")}`)
+        console.log(`Found ${seenTags.size} unique tags: ${[...seenTags].join(", ")}`)
+        
+        blogManifest.categories = [...seenCategories]
+        blogManifest.tags = [...seenTags]
         fs.writeFileSync(blogManifestFile, JSON.stringify(blogManifest, null, 2))
         console.log(`Blog manifest written to ${blogManifestFile}`)
     } catch (error) {
