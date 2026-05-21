@@ -1,16 +1,48 @@
 /// <reference types="node" />
 
 import fs from "fs"
+import { Frontmatter } from "../src/utils/parsing/frontmatter"
 
 const blogDirectory = "public/blog"
 const blogManifestFile = "src/assets/blog/blog-manifest.json"
 const wordsPerMinuteReadTime = 200
 
+type BlogManifestPost = {
+    title: string
+    date: string
+    tags: string[]
+    categories: string[]
+    keywords: string[]
+    draft: boolean
+    unlisted: boolean
+    slug: string
+    route: string
+    path: string
+    readTime: number
+}
+
+const sanitizeSegment = (value: string): string =>
+    value
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-/_]/g, "")
+        .replace(/^\/+|\/+$/g, "")
+
+const getDefaultSlugFromFile = (fileName: string): string =>
+    sanitizeSegment(fileName.replace(/\.md$/i, ""))
+
+const buildRoute = (category: string | undefined, slug: string): string => {
+    const normalizedSlug = sanitizeSegment(slug)
+    const normalizedCategory = category ? sanitizeSegment(category) : ""
+    return normalizedCategory ? `/${normalizedCategory}/${normalizedSlug}` : `/${normalizedSlug}`
+}
+
 const runScript = async () => {
     console.log("Building blog manifest...")
 
     const blogManifest = {
-        posts: [] as { title: string, date: string, tags: string[], path: string, readTime: number }[]
+        posts: {} as Record<string, BlogManifestPost>
     }
 
     try {
@@ -20,17 +52,35 @@ const runScript = async () => {
             if (file.endsWith('.md')) {
                 const filePath = `${blogDirectory}/${file}`
                 const content = fs.readFileSync(filePath, 'utf-8')
-                const titleMatch = content.match(/<!--Title:\s*(.+?)\s*-->/)
-                const dateMatch = content.match(/<!--Date:\s*(.+?)\s*-->/)
-                const tagsMatch = content.match(/<!--Tags:\s*(.+?)\s*-->/)
-                if (titleMatch && dateMatch && tagsMatch) {
-                    blogManifest.posts.push({
-                        title: titleMatch[1],
-                        date: dateMatch[1],
-                        tags: tagsMatch[1].split(',').map(tag => tag.trim()),
+                const frontmatter = new Frontmatter(content)
+                const title = frontmatter.getString("title") ?? ""
+                const date = frontmatter.getString("date") ?? ""
+                const tags = frontmatter.getList("tags") ?? []
+                const categories = frontmatter.getList("categories") ?? frontmatter.getList("category") ?? []
+                const keywords = frontmatter.getList("keywords") ?? []
+                const draft = frontmatter.getBoolean("draft") ?? false
+                const unlisted = frontmatter.getBoolean("unlisted") ?? false
+                const slugOverride = frontmatter.getString("slug") ?? ""
+                const defaultSlug = getDefaultSlugFromFile(file)
+                const slug = sanitizeSegment(slugOverride || defaultSlug)
+                const route = buildRoute(categories[0], slug)
+
+                if (title && date) {
+                    const post: BlogManifestPost = {
+                        title,
+                        date,
+                        tags,
+                        categories,
+                        keywords,
+                        draft,
+                        unlisted,
+                        slug,
+                        route,
                         path: filePath,
                         readTime: content.split(/\s+/).length / wordsPerMinuteReadTime
-                    })
+                    }
+
+                    blogManifest.posts[route] = post
                 }
             }
         }

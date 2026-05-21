@@ -16,21 +16,28 @@ const toFetchPath = (manifestPath: string): string =>
 const toSlug = (manifestPath: string): string =>
     manifestPath.replace(/^.*\//, '').replace(/\.md$/, '')
 
+const getPostEntries = (): [string, BlogPost][] =>
+    Object.entries(BlogManifest.posts as Record<string, BlogPost>)
+
+const getPostValues = (): BlogPost[] =>
+    getPostEntries().map(([, post]) => post)
+
 export const useBlog = () => {
 
     const base = useConfig().getString('base', 'kaelyx.dev')
     const blogPath = useConfig().getString('paths.blog', 'public/blog')
 
     const getBlogPosts = (): BlogPost[] => {
-        return BlogManifest.posts
+        return getPostValues()
     }
 
     const getBlogPost = (pathString: string): BlogPost | undefined => {
-        return BlogManifest.posts.find(p => p.path === pathString)
+        return getPostValues().find(p => p.path === pathString)
     }
 
     const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
-        return BlogManifest.posts.find(p => toSlug(p.path) === slug)
+        return getPostEntries().find(([route]) => route === `/${slug}`)?.[1]
+            ?? getPostValues().find(p => toSlug(p.path) === slug)
     }
 
     const getSlug = (post: BlogPost): string => toSlug(post.path)
