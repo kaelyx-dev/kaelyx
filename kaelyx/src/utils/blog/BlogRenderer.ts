@@ -33,8 +33,3 @@ class BlogRenderer {
 }
 
 export default BlogRenderer
-
-// shortcode map
-const shortcodes = {
-    "test": Test
-}

@@ -95,7 +95,9 @@ const copyLinkToClipboard = () => {
                         </Button>
                     </div>
                 </div>
-                <pre>{{ content }}</pre>
+                <div>
+                    {{ content }}
+                </div>
             </div>
         </div>
         <div class="blog-post__back-control" :class="{ 'blog-post__back-control--bottom': !isAtTop }">

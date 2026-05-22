@@ -1,6 +1,9 @@
 import { Marked, type Tokens, type RendererObject } from 'marked';
 import DOMPurify from 'dompurify';
 
+import BlockShortcodeExtension from './custom-parsing-extensions/BlockShortcodeExtension';
+import InlineShortcodeExtension from './custom-parsing-extensions/InlineShortcodeExtension';
+
 class BlogParser {
     public static readonly FRONTMATTER_DELIMITER = '---';
 
@@ -43,14 +46,28 @@ class BlogParser {
     private convertMarkdownToHtml(): void {
         if (!this.hasContent()) return;
         this._content = filterNonStandardSpaceCharacters(this._content)
-        const markedInstance = new Marked({ gfm: true, breaks: true })
-        markedInstance.use({ renderer: tokenParsers })
+        const markedInstance = new Marked()
+        markedInstance.use({
+            breaks: true, 
+            gfm: true,
+            renderer: tokenParsers, 
+            extensions: [
+                BlockShortcodeExtension,
+                InlineShortcodeExtension
+            ]
+        })
         this._html = markedInstance.parse(this._content, { async: false })
     }
 
     private sanitiseHtml(): void {
         if (!this._html) return;
-        this._html = DOMPurify.sanitize(this._html)
+        this._html = DOMPurify.sanitize(this._html, 
+            {
+                ADD_TAGS: ['sc'],
+                CUSTOM_ELEMENT_HANDLING: {
+                    attributeNameCheck: /.*/
+                }
+            })
         this._isSanitised = true
     }
 }

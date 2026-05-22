@@ -1,14 +1,8 @@
-useBlog.fetchBlogContent()
-  BlogParser.ts       (md -> sanitised HTML)
-  BlogShortcodes.ts   (HTML-> HTML + map) (Placed inside BlogParser)
-  BlogRenderer.ts     (HTML + map -> VNode[])
+Blog Parser 
+- parse markdown to html
+- find sc tags and replace them with placeholder sc tags
+- clean html and remove unwanted tags
 
-BlogParser
-- Strip frontmatter
-- Convert markdown to HTML
-- Sanitise HTML
-- Extract shortcodes and replace with placeholders and create shortcode map
-
-BlogRenderer
-- Take HTML and shortcode map
-- Convert HTML to VNodes
+Blog Renderer
+- convert html dom to vnode
+- find sc tags and replace them with the correct vnode components
