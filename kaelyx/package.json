@@ -18,6 +18,8 @@
     "k:blog:new": "tsx scripts/blog/NewPost.ts"
   },
   "dependencies": {
+    "dompurify": "^3.4.5",
+    "marked": "^18.0.4",
     "pinia": "^3.0.4",
     "vue": "^3.5.31",
     "vue-router": "^5.0.4"

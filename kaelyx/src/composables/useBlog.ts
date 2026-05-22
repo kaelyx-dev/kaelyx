@@ -3,6 +3,7 @@ import { useConfig } from "./useConfig"
 import BlogManifest from '@asset/blog/blog-manifest.json'
 
 import type { BlogPost } from '@type/global.types'
+import BlogParser from "@/utils/blog/BlogParser"
 
 const toFetchPath = (manifestPath: string): string =>
     '/' + manifestPath.replace(/^public\//, '')
@@ -56,15 +57,15 @@ export const useBlog = () => {
         return normalizedCategory ? `/${normalizedCategory}/${normalizedSlug}` : `/${normalizedSlug}`
     }
     
-    const fetchPostContent = async (post: BlogPost): Promise<string> => {
-        return await fetch(toFetchPath(post.path)).then(res => {
+    const fetchPostContent = async (post: BlogPost): Promise<string | undefined> => {
+        return await fetch(toFetchPath(post.path)).then(async res => {
             if (!res.ok) {
                 throw new Error(`Failed to fetch blog post content from ${post.path}: ${res.status} ${res.statusText}`)
             }
-            return res.text()
-        })
-        
+            let htmlString = new BlogParser(await res.text()).getHtml()
+            
+            return htmlString
+        })    
     }
-
     return { base, blogPath, getBlogPosts, fetchPostContent, getAllCategories, getAllTags, getPostToNavigateTo, getPostFromPath, getBlogPath }
 }
