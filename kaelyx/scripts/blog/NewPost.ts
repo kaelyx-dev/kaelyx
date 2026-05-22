@@ -17,7 +17,7 @@ const frontmatterKVs = {
     unlisted: true
 }
 
-const template = `${Frontmatter.createFrontmatterString(frontmatterKVs)}\n\n# {{TITLE}}`
+const template = `${Frontmatter.createFrontmatterString(frontmatterKVs)}\n\n`
 
 const filename = `${date}-${args.title?.toLowerCase().replaceAll(" ", "-") || "new-post"}.md`
 let fileBase = `public/blog/${filename}`

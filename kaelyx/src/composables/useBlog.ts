@@ -64,9 +64,9 @@ export const useBlog = () => {
                 throw new Error(`Failed to fetch blog post content from ${post.path}: ${res.status} ${res.statusText}`)
             }
             let htmlString = new BlogParser(await res.text()).getHtml()
-            return htmlString
-            // let vnodes: any = new BlogRenderer(htmlString ?? "").getVnodes()
-            // return vnodes
+            // return htmlString
+            let vnodes: any = new BlogRenderer(htmlString ?? "").getVnodes()
+            return vnodes
         })    
     }
     return { base, blogPath, getBlogPosts, fetchPostContent, getAllCategories, getAllTags, getPostToNavigateTo, getPostFromPath, getBlogPath }

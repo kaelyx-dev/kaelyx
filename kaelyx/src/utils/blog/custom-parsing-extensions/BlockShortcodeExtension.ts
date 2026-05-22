@@ -22,7 +22,7 @@ const blockShortcodeExtension: TokenizerAndRendererExtension = {
         }
     },
     renderer(token) {
-        return `<sc data-type="block" data-name="${token.tagName}" data-attr="${token.attributesString}"></sc>\n`
+        return `<sc data-type="block" data-shortcode data-name="${token.tagName}" data-attr="${token.attributesString}"></sc>\n`
     },
 }
 

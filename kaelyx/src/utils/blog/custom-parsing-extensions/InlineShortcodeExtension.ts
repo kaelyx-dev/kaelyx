@@ -20,7 +20,7 @@ const inlineShortcodeExtension: TokenizerAndRendererExtension = {
         }
     },
     renderer(token) {
-        return `<sc data-type="inline" data-name="${token.tagName}" data-attr="${token.attributesString}"></sc>`
+        return `<sc data-type="inline" data-shortcode data-name="${token.tagName}" data-attr="${token.attributesString}"></sc>`
     },
 }
 

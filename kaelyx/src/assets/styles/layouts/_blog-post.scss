@@ -29,11 +29,7 @@
         position: sticky;
         top: 1rem;
         align-self: flex-start;
-        transition: top .1s ease-in-out;
-
-        & button {
-            transition: transform .1s ease-in-out, color $animation-duration ease-in-out, background-color $animation-duration ease-in-out;
-        }
+        transition: top .3s ease-in-out;
 
         &--bottom {
             top: calc(100vh - 4rem);
