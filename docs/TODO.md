@@ -2,7 +2,7 @@
 
 # Immediates
 link styling
-toast service
+toast service 
 explore https://vite-plugin-ssr.com/pre-rendering
 explore scss @return bug somewhere
 get a deploy pipeline setup with a prod/deploy branch and a uat/testing branch
@@ -11,14 +11,12 @@ get a deploy pipeline setup with a prod/deploy branch and a uat/testing branch
 create blog cards for the blog list view
 
 # blog
-blog tags - tag filtering on BlogView
 blog share button functionality - navigator.share()
 blog copy link button functionality - update to use toast service.
 add a reading time area.
 blog auto tagger on build of manifest, short read, long read, medium read.
 
 # shortcodes
-shortcode engine - BlogShortcodes.ts registry + placeholder injection
 shortcode - link
 shortcode - image
 
@@ -28,10 +26,7 @@ projects manifest command - BuildProjectManifest.ts
 projects view layout
 
 # styling
-main block styling
-nav mobile layout
 blog post page layout
-responsive typography scale
 
 # icons
 remove comments and newlines from icon svgs
