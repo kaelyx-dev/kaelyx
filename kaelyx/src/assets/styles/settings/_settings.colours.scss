@@ -64,10 +64,6 @@ $colour-map: map-merge($theme-global, $theme-light);
 
 // ─── Emit themes ────────────────────────────────────────────
 
-// :root {
-//     color-scheme: light only;
-// }
-
 [data-theme="light"] {
   @include emit-theme($theme-light);
 }

@@ -98,8 +98,9 @@ const copyLinkToClipboard = () => {
                 <div>
                     <div>
                         {{ postDate ? `Posted: ${postDate}` : '' }}
-                        {{ post?.categories ? ` | Categories: ${post.categories.join(', ')}` : '' }}
+                        {{ post?.categories?.length ? ` | Categories: ${post.categories.join(', ')}` : '' }}
                         {{ post?.tags?.length ? ` | Tags: ${post?.tags?.join(', ')}` : '' }}
+                        {{ post?.readTime ? ` | Read Time: ${post?.readTime}` : '' }}
                     </div>
                     <div>                    
                         <component v-for="(vnode, index) in content" :is="vnode" :key="index" />

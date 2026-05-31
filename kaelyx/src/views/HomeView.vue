@@ -1,29 +1,41 @@
 <script setup lang="ts">
-import Button from '@component/base/buttons/Button.vue';
-import Link from '@component/base/links/Link.vue';
+
 </script>
 <template>
-  Home
-  
-        <Button type="primary">primary</Button>
-      <Button type="secondary">secondary</Button>
-      <Button type="tertiary">tertiary</Button>
-      <Button type="link">Link</Button>
-      <Button type="negative-link">Negative Link</Button>
-      
-      <Link type="primary" href="#">
-        primary link
-      </Link>
-      <Link type="secondary" href="#">
-        secondary link
-      </Link>
-      <Link type="tertiary" href="#">
-        tertiary link
-      </Link>
-      <Link type="link" href="#">
-        link link
-      </Link>
-      <Link type="negative-link" href="#">
-        negative link
-      </Link>
+  <main>
+    <div>
+      Intro
+    </div>
+    <div>
+      What I do
+    </div>
+    <div>
+      Tech Stack
+    </div>
+    <div>
+      Promoted N Projects
+    </div>
+    <div>
+      Promoted N Posts
+    </div>
+    <div>
+      Checkout latest post
+    </div>
+  </main>
+  <div class="main-seperator"></div>
+  <aside data-position="right">
+    <div>
+      What I am currently working on
+    </div>
+    <div>
+      Latest Project
+    </div>
+    <div>
+      Latest Posts
+    </div>
+    <div>
+      Pinned Posts
+    </div>
+
+  </aside>
 </template>

@@ -1,4 +1,3 @@
-import { useRouter } from "vue-router" 
 import { useConfig } from "./useConfig"
 import BlogManifest from '@asset/blog/blog-manifest.json'
 
@@ -69,5 +68,15 @@ export const useBlog = () => {
             return vnodes
         })    
     }
-    return { base, blogPath, getBlogPosts, fetchPostContent, getAllCategories, getAllTags, getPostToNavigateTo, getPostFromPath, getBlogPath }
+    
+    const getFilteredPosts = (filter: {string?: string | null, category?: string | null, tags?: string[] | null}) => {
+        const posts = getBlogPosts()
+        return posts.filter(post => {
+            const matchesString = filter.string ? post.title.toLowerCase().includes(filter.string.toLowerCase()) : true
+            const matchesCategory = filter.category ? post.categories.includes(filter.category) : true
+            const matchesTags = filter.tags?.length ? filter.tags.every(tag => post.tags.includes(tag)) : true
+            return matchesString && matchesCategory && matchesTags
+        })
+    }
+    return { base, blogPath, getBlogPosts, fetchPostContent, getAllCategories, getAllTags, getPostToNavigateTo, getPostFromPath, getBlogPath, getFilteredPosts }
 }

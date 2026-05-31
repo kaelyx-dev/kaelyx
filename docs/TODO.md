@@ -11,14 +11,11 @@ get a deploy pipeline setup with a prod/deploy branch and a uat/testing branch
 create blog cards for the blog list view
 
 # blog
-blog engine - implement BlogParser, BlogShortcodes, BlogRenderer pipeline
-blog nav - previous/next post navigation
 blog tags - tag filtering on BlogView
 blog share button functionality - navigator.share()
 blog copy link button functionality - update to use toast service.
-render markdown instead of raw pre tag
 add a reading time area.
-blog auto tagger on build of manifest
+blog auto tagger on build of manifest, short read, long read, medium read.
 
 # shortcodes
 shortcode engine - BlogShortcodes.ts registry + placeholder injection

@@ -1,0 +1,63 @@
+@use '../settings/settings' as *;
+@use '../utils/utils' as *;
+
+.input-pill {
+    &__wrapper {
+        width: 100%;
+        padding-bottom: spacing('md');
+    }
+
+    &__label {
+        @include font('h3');
+    }
+    
+    &__pills {
+        border: 2px solid black;
+        box-shadow: 4px 4px 0 black;
+        padding: spacing('sm');
+        
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: spacing('sm');
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        outline: none;
+        scrollbar-gutter: stable;
+        border-radius: $border-radius;
+        
+        height: 10em;
+        @include until('tablet') {
+            height: 4em;
+        }
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
+            border-radius: $border-radius;
+        }
+    }
+
+    &__pill {
+        padding: spacing('sm') spacing('md');
+        border: 2px solid black;
+        box-shadow: 2px 2px 0 black;
+        border-radius: 9999px;
+        color: colour('text');
+        cursor: pointer;
+        background-color: transparent;
+        @include font('p2');
+        
+        height: min-content;
+
+        &--selected {
+            background-color: colour('green');
+        }
+    }
+}

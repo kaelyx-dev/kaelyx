@@ -16,8 +16,8 @@ initTheme();
 <template>
   <component :is="createIconMapElement()" />
   <Header />
-  <main>
+  <div class="site-content">
     <RouterView />
-  </main>
+  </div>
   <Footer />
 </template>

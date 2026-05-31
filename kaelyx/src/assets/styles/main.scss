@@ -34,7 +34,7 @@ body {
 }
 
 
-body, main, header, footer, button, a, span, p {
+body, main, header, footer, button, a, span, p, .site-content, aside, input, .input-text__wrapper, select {
     $fade-transition-duration: $animation-duration;
     $fade-transition-timing: ease-in-out;
 

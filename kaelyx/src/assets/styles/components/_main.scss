@@ -1,7 +1,7 @@
 @use '../utils/utils' as *;
 @use '../settings/settings' as *;
 
-main {
+div.site-content {
 
     flex: 1;
 
@@ -10,5 +10,46 @@ main {
     color: colour('text');
     border: 2px solid black;
 
+    display: flex;
+    flex-direction: row;
+    
+    @include until('tablet') {
+        flex-direction: column;
+        gap: spacing('lg');
+    }
+
+    > aside {
+        width: 25%;
+        
+        @include until('tablet') {
+            width: 100%;
+        }
+    
+        &[data-position="left"] {
+            border: none;
+            order: -1;
+            border-right: 2px solid black;
+        }
+        &[data-position="right"] {
+            border: none;
+            order: 1;
+            border-left: 2px solid black;
+        }
+    }
+    &:not(:has(main)) {
+        display: flex;
+        flex-direction: column;
+        padding: spacing('lg');
+    }
+}
+
+main {
+    flex: 1;
+
+}
+
+aside, main {
     padding: spacing('lg');
+    display: flex;
+    flex-direction: column;
 }
