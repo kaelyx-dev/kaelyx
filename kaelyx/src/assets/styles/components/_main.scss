@@ -6,7 +6,7 @@ div.site-content {
     flex: 1;
 
     border-radius: $border-radius;
-    overflow: hidden;
+    contain: paint;
     background-color: colour('background');
     color: colour('text');
     border: 2px solid black;
@@ -44,10 +44,6 @@ div.site-content {
         flex-direction: column;
         padding: spacing('lg');
     }
-
-    overflow-y: scroll;
-    scrollbar-gutter: stable overlay;
-
 
     &::-webkit-scrollbar {
         width: 0px;

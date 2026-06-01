@@ -27,10 +27,11 @@
     &__back-control {
         position: sticky;
         align-self: flex-start;
+        top: 0em;
         transition: top .3s ease-in-out;
 
         &--bottom {
-            top: calc(100vh - 4rem);
+            top: calc(100vh - 4em);
         }
     }
 }
