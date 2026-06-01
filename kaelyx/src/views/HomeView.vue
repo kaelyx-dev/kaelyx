@@ -3,39 +3,38 @@
 </script>
 <template>
   <main>
-    <div>
+    <section>
       Intro
-    </div>
-    <div>
+    </section>
+    <section>
       What I do
-    </div>
-    <div>
+    </section>
+    <section>
       Tech Stack
-    </div>
-    <div>
+    </section>
+    <section>
       Promoted N Projects
-    </div>
-    <div>
+    </section>
+    <section>
       Promoted N Posts
-    </div>
-    <div>
+    </section>
+    <section>
       Checkout latest post
-    </div>
+    </section>
   </main>
   <div class="main-seperator"></div>
   <aside data-position="right">
-    <div>
+    <section>
       What I am currently working on
-    </div>
-    <div>
+    </section>
+    <section>
       Latest Project
-    </div>
-    <div>
+    </section>
+    <section>
       Latest Posts
-    </div>
-    <div>
+    </section>
+    <section>
       Pinned Posts
-    </div>
-
+    </section>
   </aside>
 </template>

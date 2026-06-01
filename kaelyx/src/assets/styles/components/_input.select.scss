@@ -94,6 +94,7 @@
         border: 2px solid black;
         box-shadow: 4px 4px 0 black;
         border-radius: $border-radius;
+        z-index: 1000;
 
         &[style*="display: none"] {
             pointer-events: none;

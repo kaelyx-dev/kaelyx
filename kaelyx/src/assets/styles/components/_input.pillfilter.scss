@@ -10,12 +10,12 @@
     &__label {
         @include font('h3');
     }
-    
+
     &__pills {
         border: 2px solid black;
         box-shadow: 4px 4px 0 black;
         padding: spacing('sm');
-        
+
         width: 100%;
         display: flex;
         flex-wrap: wrap;
@@ -25,11 +25,13 @@
         outline: none;
         scrollbar-gutter: stable;
         border-radius: $border-radius;
-        
+
         height: 10em;
+
         @include until('tablet') {
             height: 4em;
         }
+
         &::-webkit-scrollbar {
             width: 0px;
         }
@@ -47,17 +49,22 @@
     &__pill {
         padding: spacing('sm') spacing('md');
         border: 2px solid black;
-        box-shadow: 2px 2px 0 black;
-        border-radius: 9999px;
+        border-radius: $border-radius;
         color: colour('text');
         cursor: pointer;
         background-color: transparent;
         @include font('p2');
-        
+
         height: min-content;
+
+        translate: 2px 2px;
+
+        transition: background-color $animation-duration ease, box-shadow $animation-duration ease, translate $animation-duration ease;
 
         &--selected {
             background-color: colour('green');
+            box-shadow: 2px 2px 0 black;
+            translate: 0px 0px;
         }
     }
 }
