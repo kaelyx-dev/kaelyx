@@ -59,7 +59,7 @@
 
         translate: 2px 2px;
 
-        transition: background-color $animation-duration ease, box-shadow $animation-duration ease, translate $animation-duration ease;
+        @include global-animations((background-color $animation-duration ease, box-shadow $animation-duration ease, translate $animation-duration ease));
 
         &--selected {
             background-color: colour('green');

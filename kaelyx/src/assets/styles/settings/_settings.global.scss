@@ -73,7 +73,6 @@ $animation-duration: 0.2s;
     }
 }
 
-
 @mixin button-styles() {
     @include button-variant('primary', colour('yellow'), colour('black'), colour('dark-purple'), colour('white'));
     @include button-variant('secondary', colour('orange'), colour('black'), colour('dark-blue'), colour('white'));
@@ -109,4 +108,22 @@ $animation-duration: 0.2s;
   @include add-light-bg-colour-classes();
   @include add-dark-text-colour-classes();
   @include add-light-text-colour-classes();
+}
+
+
+
+@mixin global-animations ($moreFields: (), $durationOverride: null) {
+    $fade-transition-duration: if($durationOverride, $durationOverride, $animation-duration);
+    $fade-transition-timing: ease-in-out;
+
+    $transition-properties: color, background-color, border-color;
+
+    $transitions: ();
+    @each $prop in $transition-properties {
+        $transitions: append($transitions, $prop $fade-transition-duration $fade-transition-timing, comma);
+    }
+    @each $extra in $moreFields {
+        $transitions: append($transitions, $extra, comma);
+    }
+    transition: $transitions;
 }

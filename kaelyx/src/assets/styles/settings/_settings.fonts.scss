@@ -1,41 +1,46 @@
 @use 'sass:map';
-@use 'sass:list';
 
-
-@font-face {
-    font-family: 'roboto';
-    src: url('@/assets/fonts/roboto.woff2') format('woff2');
-    font-display: swap;
+@mixin font-face($name) {
+    @font-face {
+        font-family: '#{$name}';
+        src: url('@/assets/fonts/#{$name}.woff2') format('woff2');
+        font-display: swap;
+        @content;
+    }
 }
 
+@include font-face('roboto');
+@include font-face('syne');
+@include font-face('inter');
+@include font-face('spacegrotesk');
+
 $font-map: (
-    title:  (3em, 125%, 0px),
-    h1:     (2em, 125%, 0px),
-    h2:     (1.5em, 125%, 0px),
-    h3:     (1.25em, 125%, 0px),
-    p1:     (1em, 125%, 0px),
-    p2:     (0.875em, 125%, 0px),
-    p3:     (0.5em, 125%, 0px),
+    title:  (size: 3em,      line-height: 125%, letter-spacing: 0px, family: 'syne',        weight: 700),
+    h1:     (size: 2em,      line-height: 125%, letter-spacing: 0px, family: 'syne',        weight: 600),
+    h2:     (size: 1.75em,    line-height: 125%, letter-spacing: 0px, family: 'spacegrotesk',weight: 600),
+    h3:     (size: 1.5em,   line-height: 125%, letter-spacing: 0px, family: 'spacegrotesk',weight: 500),
+    p1:     (size: 1.25em,      line-height: 125%, letter-spacing: 0px, family: 'spacegrotesk',weight: 400),
+    p2:     (size: 1em,  line-height: 125%, letter-spacing: 0px, family: 'inter',       weight: 400),
+    p3:     (size: 0.875em,  line-height: 125%, letter-spacing: 0px, family: 'inter',       weight: 400),
 );
 
 $k-fontfamily-list: (
     'roboto'
 );
 
-@mixin font($name, $family: 'roboto') {
+@mixin font($name, $family: null) {
     @if not map.has-key($font-map, $name) {
         @error "Font '#{$name}' not found in \$k-font-map.";
     }
 
     $font: map.get($font-map, $name);
-    $size: list.nth($font, 1);
-    $lineHeight: list.nth($font, 2);
-    $letterSpacing: (list.nth($font, 3));
-    
-    font-family: $family, sans-serif;
-    font-size: $size;
-    line-height: $lineHeight;
-    letter-spacing: $letterSpacing;
+    $resolved-family: if($family, $family, map.get($font, family));
+
+    font-family: $resolved-family, sans-serif;
+    font-size: map.get($font, size);
+    line-height: map.get($font, line-height);
+    letter-spacing: map.get($font, letter-spacing);
+    font-weight: map.get($font, weight);
 }
 
 @function font-size($name) {
@@ -43,8 +48,7 @@ $k-fontfamily-list: (
         @error "Font '#{$name}' not found in \$k-font-map.";
     }
 
-    $font: map.get($font-map, $name);
-    @return list.nth($font, 1);
+    @return map.get(map.get($font-map, $name), size);
 }
 
 @mixin add-font-classes() {
